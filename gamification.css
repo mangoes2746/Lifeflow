@@ -1,0 +1,1095 @@
+/* ==========================================================================
+   LIFEFLOW — gamification.css
+   XP, FlowCoins, achievements, daily missions, and leaderboard.
+   Uses the same CSS variables as style.css — works with all themes.
+   ========================================================================== */
+
+/* ══════════════════════════════════════════════
+   SHELL LAYOUT
+══════════════════════════════════════════════ */
+.game-shell {
+  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 18px;
+  animation: gameRise 0.45s ease both;
+}
+
+@keyframes gameRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════
+   GAME CARD
+══════════════════════════════════════════════ */
+.game-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -120px;
+  top: -130px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--accent) 12%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.game-card-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.game-kicker {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.game-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.6px;
+}
+
+.game-title-sm {
+  font-size: 22px;
+}
+
+/* ── Currency pills ── */
+.game-currency {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.game-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--cream2);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.game-pill strong {
+  color: var(--text-primary);
+}
+
+/* ── Level row ── */
+.game-level-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.game-level-badge {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--warm-dark), var(--accent));
+  color: var(--cream);
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 28%, transparent);
+  flex-shrink: 0;
+}
+
+.game-level-info {
+  min-width: 0;
+}
+
+.game-xp-track {
+  height: 10px;
+  background: var(--cream3);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.game-xp-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 35%, transparent);
+  transition: width 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.game-xp-copy {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.game-level-pct {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ── Section label ── */
+.game-section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════════
+   MISSIONS
+══════════════════════════════════════════════ */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.mission-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--cream) 60%, var(--card-bg));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mission-card.complete {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+  background: color-mix(in srgb, var(--accent-light) 30%, var(--card-bg));
+}
+
+.mission-card.claimed {
+  opacity: 0.65;
+}
+
+.mission-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.mission-icon {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+}
+
+.mission-reward {
+  font-size: 10px;
+  color: var(--accent);
+  font-weight: 800;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.mission-name {
+  font-size: 12.5px;
+  color: var(--text-primary);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.mission-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.35;
+}
+
+.mission-action {
+  border: none;
+  border-radius: 999px;
+  padding: 7px 10px;
+  background: var(--warm-dark);
+  color: var(--cream);
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+  margin-top: auto;
+}
+
+.mission-action:hover:not(:disabled) {
+  background: var(--warm-mid);
+}
+
+.mission-action:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ══════════════════════════════════════════════
+   SIDE GRID
+══════════════════════════════════════════════ */
+.game-side-grid {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+.game-mini-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Achievement rows ── */
+.achievement-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--cream) 50%, var(--card-bg));
+  transition: border-color 0.2s ease;
+}
+
+.achievement-row.unlocked {
+  border-color: color-mix(in srgb, var(--gold) 40%, var(--border));
+  background: color-mix(in srgb, var(--gold-light) 40%, var(--card-bg));
+}
+
+.achievement-medal {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream2);
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.achievement-row.unlocked .achievement-medal {
+  background: linear-gradient(135deg, var(--gold), var(--accent));
+  color: var(--cream);
+}
+
+.achievement-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.achievement-copy strong {
+  display: block;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.achievement-copy span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.achievement-check {
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Leaderboard rows ── */
+.friend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--cream) 50%, var(--card-bg));
+  transition: border-color 0.2s ease;
+}
+
+.friend-row.is-me {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+  background: color-mix(in srgb, var(--accent-light) 30%, var(--card-bg));
+}
+
+.friend-row.rank-1 { border-color: color-mix(in srgb, var(--gold) 50%, var(--border)); }
+.friend-row.rank-2 { border-color: color-mix(in srgb, var(--text-muted) 40%, var(--border)); }
+.friend-row.rank-3 { border-color: color-mix(in srgb, var(--accent2) 40%, var(--border)); }
+
+.friend-rank {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream2);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.friend-row.rank-1 .friend-rank { background: var(--gold); color: var(--cream); }
+.friend-row.rank-2 .friend-rank { background: var(--text-muted); color: var(--cream); }
+.friend-row.rank-3 .friend-rank { background: var(--accent2); color: var(--cream); }
+
+.friend-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.friend-copy strong {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-copy span {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.you-tag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.friend-score {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 800;
+  white-space: nowrap;
+  align-self: center;
+}
+
+.friend-remove {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.friend-row:hover .friend-remove {
+  opacity: 1;
+}
+
+.friend-remove:hover {
+  background: var(--cream2);
+  color: var(--text-primary);
+}
+
+.friend-remove-placeholder {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ── Empty leaderboard ── */
+.leaderboard-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 12px;
+  text-align: center;
+  border: 1px dashed var(--border2);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+/* ── Add friend form ── */
+.game-friend-form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* ── Tag row ── */
+.game-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: var(--accent-light);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--border));
+}
+
+.game-tag-label {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.game-tag-value {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  font-family: 'DM Sans', monospace;
+  letter-spacing: 0.3px;
+}
+
+.game-tag-copy {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  transition: background 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.game-tag-copy:hover {
+  background: var(--cream2);
+  color: var(--accent);
+}
+
+/* ── Arena leaderboard friends link button ── */
+.game-friends-link {
+  background: var(--cream2);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+
+.game-friends-link:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.game-add-friends-btn {
+  margin-top: 6px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 7px 16px;
+  background: transparent;
+  color: var(--accent);
+  font: 700 12px "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.game-add-friends-btn:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.game-friend-form input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--border2);
+  background: var(--cream);
+  color: var(--text-primary);
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-friend-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.game-friend-form input::placeholder {
+  color: var(--text-muted);
+}
+
+.game-friend-form button {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: var(--warm-dark);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+
+.game-friend-form button:hover {
+  background: var(--warm-mid);
+}
+
+/* ── Battle ── */
+.battle-active {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent-light) 50%, var(--card-bg));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--border));
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.game-battle-btn {
+  width: 100%;
+  margin-top: 10px;
+  min-height: 42px;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 16px;
+  background: var(--warm-dark);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.game-battle-btn:hover {
+  background: var(--warm-mid);
+  transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════════
+   LEVEL-UP POPUP
+══════════════════════════════════════════════ */
+.level-up-pop {
+  position: fixed;
+  left: 50%;
+  top: 88px;
+  transform: translateX(-50%) translateY(-20px) scale(0.96);
+  z-index: 1000;
+  padding: 16px 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--warm-dark), var(--accent));
+  color: var(--cream);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  animation: levelPop 2.6s ease forwards;
+  text-align: center;
+  pointer-events: none;
+}
+
+.level-up-pop strong {
+  display: block;
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.level-up-pop span {
+  display: block;
+  font-size: 12px;
+  margin-top: 5px;
+  opacity: 0.8;
+}
+
+@keyframes levelPop {
+  0%       { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.96); }
+  12%, 80% { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+  100%     { opacity: 0; transform: translateX(-50%) translateY(-12px) scale(0.98); }
+}
+
+/* ══════════════════════════════════════════════
+   THEME OVERRIDES
+══════════════════════════════════════════════ */
+
+/* ── Dark ── */
+body[data-theme="dark"] .game-card {
+  background: var(--card-bg);
+}
+
+body[data-theme="dark"] .mission-card {
+  background: color-mix(in srgb, var(--cream3) 30%, var(--card-bg));
+}
+
+body[data-theme="dark"] .achievement-row,
+body[data-theme="dark"] .friend-row {
+  background: color-mix(in srgb, var(--cream3) 20%, var(--card-bg));
+}
+
+body[data-theme="dark"] .game-pill {
+  background: var(--cream3);
+}
+
+body[data-theme="dark"] .game-friend-form input {
+  background: var(--cream2);
+}
+
+/* ── Neon ── */
+body[data-theme="neon"] .game-card {
+  background: rgba(0, 245, 212, 0.03);
+  border-color: rgba(0, 245, 212, 0.14);
+  box-shadow: 0 0 24px rgba(0, 245, 212, 0.06), inset 0 0 24px rgba(0, 245, 212, 0.02);
+}
+
+body[data-theme="neon"] .game-card::before {
+  background: radial-gradient(circle, rgba(0, 245, 212, 0.1), transparent 70%);
+}
+
+body[data-theme="neon"] .game-kicker {
+  color: rgba(0, 245, 212, 0.5);
+}
+
+body[data-theme="neon"] .game-title {
+  color: #e0f8f4;
+}
+
+body[data-theme="neon"] .game-level-badge,
+body[data-theme="neon"] .mission-action,
+body[data-theme="neon"] .game-friend-form button,
+body[data-theme="neon"] .game-battle-btn {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+}
+
+body[data-theme="neon"] .mission-action:hover:not(:disabled),
+body[data-theme="neon"] .game-friend-form button:hover,
+body[data-theme="neon"] .game-battle-btn:hover {
+  background: linear-gradient(135deg, #00dfc0, #0070e0);
+}
+
+body[data-theme="neon"] .game-xp-fill {
+  background: linear-gradient(90deg, #00f5d4, #0088ff);
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+}
+
+body[data-theme="neon"] .game-xp-track {
+  background: rgba(0, 245, 212, 0.08);
+  border-color: rgba(0, 245, 212, 0.12);
+}
+
+body[data-theme="neon"] .game-pill {
+  background: rgba(0, 245, 212, 0.06);
+  border-color: rgba(0, 245, 212, 0.15);
+  color: rgba(0, 245, 212, 0.7);
+}
+
+body[data-theme="neon"] .game-pill strong {
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .mission-card {
+  background: rgba(0, 245, 212, 0.03);
+  border-color: rgba(0, 245, 212, 0.1);
+}
+
+body[data-theme="neon"] .mission-card.complete {
+  border-color: rgba(0, 245, 212, 0.3);
+  background: rgba(0, 245, 212, 0.06);
+}
+
+body[data-theme="neon"] .mission-icon,
+body[data-theme="neon"] .mission-reward,
+body[data-theme="neon"] .friend-score,
+body[data-theme="neon"] .game-level-pct {
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .achievement-row,
+body[data-theme="neon"] .friend-row {
+  background: rgba(0, 245, 212, 0.03);
+  border-color: rgba(0, 245, 212, 0.1);
+}
+
+body[data-theme="neon"] .achievement-row.unlocked {
+  border-color: rgba(0, 245, 212, 0.3);
+  background: rgba(0, 245, 212, 0.06);
+}
+
+body[data-theme="neon"] .achievement-row.unlocked .achievement-medal {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+}
+
+body[data-theme="neon"] .friend-row.is-me {
+  border-color: rgba(0, 245, 212, 0.3);
+  background: rgba(0, 245, 212, 0.06);
+}
+
+body[data-theme="neon"] .you-tag {
+  background: rgba(0, 245, 212, 0.12);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .game-friend-form input {
+  background: rgba(0, 245, 212, 0.04);
+  border-color: rgba(0, 245, 212, 0.15);
+  color: #e0f8f4;
+}
+
+body[data-theme="neon"] .game-friend-form input:focus {
+  border-color: rgba(0, 245, 212, 0.4);
+  box-shadow: 0 0 0 3px rgba(0, 245, 212, 0.1);
+}
+
+body[data-theme="neon"] .game-friend-form input::placeholder {
+  color: rgba(0, 245, 212, 0.3);
+}
+
+body[data-theme="neon"] .leaderboard-empty {
+  border-color: rgba(0, 245, 212, 0.15);
+  color: rgba(0, 245, 212, 0.4);
+}
+
+body[data-theme="neon"] .battle-active {
+  background: rgba(0, 245, 212, 0.06);
+  border-color: rgba(0, 245, 212, 0.25);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .level-up-pop {
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.2), rgba(0, 136, 255, 0.2));
+  border: 1px solid rgba(0, 245, 212, 0.4);
+  color: #00f5d4;
+  backdrop-filter: blur(20px);
+}
+
+/* ── Forest ── */
+body[data-theme="forest"] .game-level-badge {
+  background: linear-gradient(135deg, var(--warm-dark), var(--accent));
+}
+
+/* ── Ocean ── */
+body[data-theme="ocean"] .game-level-badge {
+  background: linear-gradient(135deg, var(--warm-dark), var(--accent));
+}
+
+/* ── Rose ── */
+body[data-theme="rose"] .game-level-badge {
+  background: linear-gradient(135deg, var(--warm-dark), var(--accent));
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .mission-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .game-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .mission-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .game-shell {
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .game-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .game-card-header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .game-currency {
+    justify-content: flex-start;
+  }
+
+  .game-level-row {
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+  }
+
+  .game-level-badge {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    border-radius: 14px;
+  }
+
+  .mission-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .game-friend-form {
+    flex-direction: row;
+  }
+
+  .game-side-grid {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mission-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-title {
+    font-size: 24px;
+  }
+
+  .game-title-sm {
+    font-size: 20px;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   REAL MULTIPLAYER LEADERBOARD ADDITIONS
+══════════════════════════════════════════════ */
+
+/* ── Friend avatar with online indicator ── */
+.friend-avatar-sm {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--cream);
+  font-size: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.friend-avatar-sm.online::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 2px solid var(--card-bg);
+}
+
+/* ── Online dot inline ── */
+.online-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+/* ── Status line below the input ── */
+.leaderboard-status {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-height: 16px;
+  margin-bottom: 6px;
+  padding: 0 2px;
+}
+
+/* ── Friend picker dropdown ── */
+.friend-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.friend-pick-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+}
+
+.friend-pick-btn:last-child {
+  border-bottom: none;
+}
+
+.friend-pick-btn:hover {
+  background: var(--cream2);
+}
+
+.friend-pick-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.friend-pick-email {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ── Neon overrides for new elements ── */
+body[data-theme="neon"] .friend-avatar-sm {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+}
+
+body[data-theme="neon"] .friend-avatar-sm.online::after {
+  background: #00f5d4;
+  border-color: #060610;
+}
+
+body[data-theme="neon"] .online-dot {
+  background: #00f5d4;
+}
+
+body[data-theme="neon"] .friend-picker {
+  background: rgba(9, 9, 26, 0.95);
+  border-color: rgba(0, 245, 212, 0.2);
+}
+
+body[data-theme="neon"] .friend-pick-btn {
+  border-bottom-color: rgba(0, 245, 212, 0.1);
+}
+
+body[data-theme="neon"] .friend-pick-btn:hover {
+  background: rgba(0, 245, 212, 0.06);
+}
+
+body[data-theme="neon"] .friend-pick-name {
+  color: #e0f8f4;
+}
+
+body[data-theme="neon"] .leaderboard-status {
+  color: rgba(0, 245, 212, 0.5);
+}
+
+/* ══════════════════════════════════════════════
+   GAME PANEL — dedicated page layout
+══════════════════════════════════════════════ */
+
+/* The game shell fills the panel content area */
+#panel-game .game-shell {
+  margin-bottom: 0;
+}
+
+/* On the game panel the shell can go full two-column */
+#panel-game .game-shell {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+@media (max-width: 980px) {
+  #panel-game .game-shell {
+    grid-template-columns: 1fr;
+  }
+}

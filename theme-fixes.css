@@ -1,0 +1,3143 @@
+/* ==========================================================================
+   LIFEFLOW — theme-fixes.css
+   Fixes all hardcoded colors that break theme switching.
+   
+   Add in index.html <head> LAST, after settings.css:
+   <link rel="stylesheet" href="theme-fixes.css"/>
+   ========================================================================== */
+
+/* ══════════════════════════════════════════════════════════════════
+   BASE FIXES — replace all hardcoded #fff / #f5f0e8 references
+   These apply to ALL themes including the default one
+══════════════════════════════════════════════════════════════════ */
+
+/* quick-btn hover had hardcoded #fff */
+.quick-btn:hover {
+  background: var(--cream2) !important;
+}
+
+/* filter-btn active uses hardcoded #f5f0e8 text */
+.filter-btn.active {
+  background: var(--warm-dark);
+  color: var(--cream);
+  border-color: var(--warm-dark);
+}
+
+/* focus tab active */
+.focus-tab.active {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+
+/* btn-start */
+.btn-start {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+.btn-start:hover {
+  background: var(--warm-mid);
+}
+.btn-start.running {
+  background: var(--accent);
+  color: var(--cream);
+}
+
+/* btn-primary */
+.btn-primary {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--warm-mid);
+}
+
+/* btn-save */
+.btn-save {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+.btn-save:hover {
+  background: var(--warm-mid);
+}
+
+/* auth btn */
+.auth-btn {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+.auth-btn:hover {
+  background: var(--warm-mid);
+}
+
+/* today cell in calendar */
+.cal-day.today .day-num {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+
+/* note tag recipe has hardcoded red */
+.tag-recipe {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* nav-badge */
+.nav-badge {
+  background: var(--accent);
+  color: var(--cream);
+}
+
+/* user avatar */
+.user-avatar {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: var(--cream);
+}
+
+/* modal footer bg */
+.modal-foot {
+  background: var(--cream2);
+}
+
+/* auth card */
+.auth-card,
+.modal,
+.modal-sm {
+  background: var(--card-bg);
+}
+
+/* auth error — hardcoded red bg */
+.auth-error {
+  background: var(--accent-light);
+  border-color: var(--border2);
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   DARK THEME FIXES
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="dark"] .tag-recipe {
+  background: rgba(160,122,240,0.15);
+  color: var(--accent2);
+}
+
+body[data-theme="dark"] .tag-idea {
+  background: rgba(201,162,39,0.15);
+  color: #c9a227;
+}
+
+body[data-theme="dark"] .tag-schedule {
+  background: rgba(85,128,200,0.15);
+  color: #7a9fd8;
+}
+
+body[data-theme="dark"] .tag-list {
+  background: rgba(74,158,110,0.15);
+  color: #4a9e6e;
+}
+
+body[data-theme="dark"] .auth-error {
+  background: rgba(201,64,64,0.15);
+  border-color: rgba(201,64,64,0.3);
+  color: #e07070;
+}
+
+body[data-theme="dark"] .quick-btn:hover {
+  background: var(--cream3) !important;
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .goal-progress-bar {
+  background: var(--cream3);
+}
+
+body[data-theme="dark"] input,
+body[data-theme="dark"] textarea,
+body[data-theme="dark"] select {
+  color-scheme: dark;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   NEON THEME FIXES
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="neon"] .tag-recipe {
+  background: rgba(0,245,212,0.1);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .tag-idea {
+  background: rgba(255,204,0,0.1);
+  color: #ffcc00;
+}
+
+body[data-theme="neon"] .tag-schedule {
+  background: rgba(0,136,255,0.12);
+  color: #00aaff;
+}
+
+body[data-theme="neon"] .tag-list {
+  background: rgba(0,245,160,0.1);
+  color: #00f5a0;
+}
+
+body[data-theme="neon"] .filter-btn.active {
+  background: rgba(0,245,212,0.15);
+  color: #00f5d4;
+  border-color: rgba(0,245,212,0.4);
+}
+
+body[data-theme="neon"] .focus-tab.active {
+  background: rgba(0,245,212,0.15);
+  color: #00f5d4;
+  border: 1px solid rgba(0,245,212,0.35);
+}
+
+body[data-theme="neon"] .btn-start,
+body[data-theme="neon"] .btn-primary,
+body[data-theme="neon"] .btn-save,
+body[data-theme="neon"] .auth-btn {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+  font-weight: 700;
+  border: none;
+}
+
+body[data-theme="neon"] .btn-start:hover,
+body[data-theme="neon"] .btn-primary:hover,
+body[data-theme="neon"] .btn-save:hover,
+body[data-theme="neon"] .auth-btn:hover {
+  background: linear-gradient(135deg, #00dfc0, #0070e0);
+  color: #060610;
+}
+
+body[data-theme="neon"] .modal-foot {
+  background: #0a0a1a;
+}
+
+body[data-theme="neon"] .cal-day.today .day-num {
+  background: #00f5d4;
+  color: #060610;
+}
+
+body[data-theme="neon"] .auth-error {
+  background: rgba(255,60,60,0.1);
+  border-color: rgba(255,60,60,0.3);
+  color: #ff6060;
+}
+
+body[data-theme="neon"] input,
+body[data-theme="neon"] textarea,
+body[data-theme="neon"] select {
+  color-scheme: dark;
+}
+
+body[data-theme="neon"] .quick-btn {
+  background: #09091a;
+  border-color: rgba(0,245,212,0.15);
+}
+
+body[data-theme="neon"] .quick-btn:hover {
+  background: rgba(0,245,212,0.08) !important;
+  border-color: rgba(0,245,212,0.4);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .focus-tabs {
+  background: #09091a;
+  border-color: rgba(0,245,212,0.15);
+}
+
+body[data-theme="neon"] .btn-reset:hover {
+  background: rgba(0,245,212,0.06);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .settings-btn:hover {
+  background: rgba(0,245,212,0.08);
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .fsize-btn.active {
+  background: rgba(0,245,212,0.1);
+  border-color: #00f5d4;
+  color: #00f5d4;
+}
+
+body[data-theme="neon"] .toggle-switch input:checked + .toggle-track {
+  background: #00f5d4;
+  border-color: #00f5d4;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FOREST THEME FIXES
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="forest"] .tag-recipe {
+  background: rgba(90,138,58,0.12);
+  color: #5a8a3a;
+}
+
+body[data-theme="forest"] .tag-idea {
+  background: rgba(154,120,32,0.12);
+  color: #9a7820;
+}
+
+body[data-theme="forest"] .tag-schedule {
+  background: rgba(74,112,144,0.12);
+  color: #4a7090;
+}
+
+body[data-theme="forest"] .tag-list {
+  background: rgba(74,128,80,0.12);
+  color: #4a8050;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   OCEAN THEME FIXES
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="ocean"] .tag-recipe {
+  background: rgba(26,106,170,0.12);
+  color: #1a6aaa;
+}
+
+body[data-theme="ocean"] .tag-idea {
+  background: rgba(192,128,32,0.12);
+  color: #c08020;
+}
+
+body[data-theme="ocean"] .tag-schedule {
+  background: rgba(26,88,152,0.12);
+  color: #1a5898;
+}
+
+body[data-theme="ocean"] .tag-list {
+  background: rgba(42,138,112,0.12);
+  color: #2a8a70;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   ROSE THEME FIXES
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="rose"] .tag-recipe {
+  background: rgba(194,64,122,0.12);
+  color: #c2407a;
+}
+
+body[data-theme="rose"] .tag-idea {
+  background: rgba(184,120,32,0.12);
+  color: #b87820;
+}
+
+body[data-theme="rose"] .tag-schedule {
+  background: rgba(90,90,170,0.12);
+  color: #5a5aaa;
+}
+
+body[data-theme="rose"] .tag-list {
+  background: rgba(106,138,90,0.12);
+  color: #6a8a5a;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   GLOBAL — page-header backdrop matches theme background
+══════════════════════════════════════════════════════════════════ */
+.page-header {
+  background: color-mix(in srgb, var(--cream) 92%, transparent);
+}
+
+/* For browsers without color-mix support */
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+  body[data-theme="dark"]   .page-header { background: rgba(19,17,26,0.92); }
+  body[data-theme="neon"]   .page-header { background: rgba(6,6,16,0.95); }
+  body[data-theme="forest"] .page-header { background: rgba(240,236,227,0.92); }
+  body[data-theme="ocean"]  .page-header { background: rgba(232,240,248,0.92); }
+  body[data-theme="rose"]   .page-header { background: rgba(250,240,244,0.92); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SMOOTH TRANSITIONS — extended list to catch everything
+══════════════════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
+  transition-property: background-color, color, border-color, box-shadow, fill, stroke;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* But don't slow down transforms/opacity for animations */
+.note-card:hover,
+.stat-card:hover,
+.goal-card:hover,
+.btn-primary:hover,
+.nav-item,
+.modal,
+.overlay,
+.toast {
+  transition: all 0.2s ease;
+}
+
+/* Don't transition the timer dashoffset — already has its own */
+.ring-fill {
+  transition: stroke-dashoffset 0.5s ease, stroke 0.3s ease;
+}
+
+/* ══════════════════════════════════════════════
+   COMPREHENSIVE DARK / THEMED FIXES
+   Covers all hardcoded rgba(26,22,18) and
+   rgba(245,240,232) values in style.css
+══════════════════════════════════════════════ */
+
+/* ── Page header background for all dark themes ── */
+body[data-theme="dark"] .page-header,
+body[data-theme="neon"] .page-header,
+body[data-theme="forest"] .page-header,
+body[data-theme="ocean"] .page-header,
+body[data-theme="rose"] .page-header {
+  background: color-mix(in srgb, var(--cream) 92%, transparent);
+}
+
+/* ── Sidebar: hardcoded cream colors ── */
+body[data-theme="dark"] .logo-name,
+body[data-theme="neon"] .logo-name,
+body[data-theme="forest"] .logo-name,
+body[data-theme="ocean"] .logo-name,
+body[data-theme="rose"] .logo-name {
+  color: var(--cream);
+}
+
+body[data-theme="dark"] .logo-sub,
+body[data-theme="neon"] .logo-sub {
+  color: rgba(232, 228, 248, 0.42);
+}
+body[data-theme="forest"] .logo-sub,
+body[data-theme="ocean"] .logo-sub,
+body[data-theme="rose"] .logo-sub {
+  color: color-mix(in srgb, var(--cream) 35%, transparent);
+}
+
+body[data-theme="dark"] .nav-item,
+body[data-theme="neon"] .nav-item,
+body[data-theme="forest"] .nav-item,
+body[data-theme="ocean"] .nav-item,
+body[data-theme="rose"] .nav-item {
+  color: color-mix(in srgb, var(--cream) 50%, transparent);
+}
+
+body[data-theme="dark"] .nav-item:hover,
+body[data-theme="neon"] .nav-item:hover,
+body[data-theme="forest"] .nav-item:hover,
+body[data-theme="ocean"] .nav-item:hover,
+body[data-theme="rose"] .nav-item:hover {
+  color: color-mix(in srgb, var(--cream) 90%, transparent);
+}
+
+body[data-theme="dark"] .nav-item.active,
+body[data-theme="neon"] .nav-item.active,
+body[data-theme="forest"] .nav-item.active,
+body[data-theme="ocean"] .nav-item.active,
+body[data-theme="rose"] .nav-item.active {
+  color: var(--cream);
+}
+
+body[data-theme="dark"] .user-name,
+body[data-theme="neon"] .user-name {
+  color: var(--text-primary);
+}
+body[data-theme="forest"] .user-name,
+body[data-theme="ocean"] .user-name,
+body[data-theme="rose"] .user-name {
+  color: color-mix(in srgb, var(--cream) 75%, transparent);
+}
+
+body[data-theme="dark"] .user-sub,
+body[data-theme="neon"] .user-sub {
+  color: var(--text-muted);
+}
+body[data-theme="forest"] .user-sub,
+body[data-theme="ocean"] .user-sub,
+body[data-theme="rose"] .user-sub {
+  color: color-mix(in srgb, var(--cream) 30%, transparent);
+}
+
+body[data-theme="dark"] .nav-section-label,
+body[data-theme="neon"] .nav-section-label,
+body[data-theme="forest"] .nav-section-label,
+body[data-theme="ocean"] .nav-section-label,
+body[data-theme="rose"] .nav-section-label {
+  color: color-mix(in srgb, var(--cream) 20%, transparent);
+}
+
+/* ── Main area background ── */
+body[data-theme="dark"] .main,
+body[data-theme="neon"] .main,
+body[data-theme="forest"] .main,
+body[data-theme="ocean"] .main,
+body[data-theme="rose"] .main {
+  background: var(--cream);
+}
+
+/* ── Cards: glassmorphism background ── */
+body[data-theme="dark"] .stat-card,
+body[data-theme="dark"] .dash-card,
+body[data-theme="dark"] .note-card,
+body[data-theme="dark"] .goal-card,
+body[data-theme="neon"] .stat-card,
+body[data-theme="neon"] .dash-card,
+body[data-theme="neon"] .note-card,
+body[data-theme="neon"] .goal-card,
+body[data-theme="forest"] .stat-card,
+body[data-theme="forest"] .dash-card,
+body[data-theme="forest"] .note-card,
+body[data-theme="forest"] .goal-card,
+body[data-theme="ocean"] .stat-card,
+body[data-theme="ocean"] .dash-card,
+body[data-theme="ocean"] .note-card,
+body[data-theme="ocean"] .goal-card,
+body[data-theme="rose"] .stat-card,
+body[data-theme="rose"] .dash-card,
+body[data-theme="rose"] .note-card,
+body[data-theme="rose"] .goal-card {
+  background: color-mix(in srgb, var(--card-bg) 80%, transparent);
+}
+
+/* ── Overlay backdrop ── */
+body[data-theme="dark"] .overlay,
+body[data-theme="neon"] .overlay,
+body[data-theme="forest"] .overlay,
+body[data-theme="ocean"] .overlay,
+body[data-theme="rose"] .overlay {
+  background: rgba(0,0,0,0.6);
+}
+
+/* ── Modal inset shadow ── */
+body[data-theme="dark"] .modal,
+body[data-theme="neon"] .modal,
+body[data-theme="forest"] .modal,
+body[data-theme="ocean"] .modal,
+body[data-theme="rose"] .modal {
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px var(--border) inset;
+}
+
+/* ── Modal footer ── */
+body[data-theme="dark"] .modal-foot,
+body[data-theme="neon"] .modal-foot,
+body[data-theme="forest"] .modal-foot,
+body[data-theme="ocean"] .modal-foot,
+body[data-theme="rose"] .modal-foot {
+  background: var(--cream2);
+}
+
+/* ── Toast ── */
+body[data-theme="dark"] .toast,
+body[data-theme="neon"] .toast,
+body[data-theme="forest"] .toast,
+body[data-theme="ocean"] .toast,
+body[data-theme="rose"] .toast {
+  background: var(--warm-dark);
+  color: var(--cream);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+/* ── FAB ── */
+body[data-theme="dark"] .fab,
+body[data-theme="neon"] .fab,
+body[data-theme="forest"] .fab,
+body[data-theme="ocean"] .fab,
+body[data-theme="rose"] .fab {
+  background: var(--warm-dark);
+  color: var(--cream);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.3);
+}
+
+body[data-theme="dark"] .fab-item-label,
+body[data-theme="neon"] .fab-item-label,
+body[data-theme="forest"] .fab-item-label,
+body[data-theme="ocean"] .fab-item-label,
+body[data-theme="rose"] .fab-item-label {
+  background: var(--warm-dark);
+  color: var(--cream);
+}
+
+/* ── Quote banner text ── */
+body[data-theme="dark"] .quote-text,
+body[data-theme="neon"] .quote-text {
+  color: var(--text-primary);
+}
+body[data-theme="forest"] .quote-text,
+body[data-theme="ocean"] .quote-text,
+body[data-theme="rose"] .quote-text {
+  color: color-mix(in srgb, var(--cream) 90%, transparent);
+}
+
+body[data-theme="dark"] .quote-author,
+body[data-theme="neon"] .quote-author {
+  color: var(--text-muted);
+}
+body[data-theme="forest"] .quote-author,
+body[data-theme="ocean"] .quote-author,
+body[data-theme="rose"] .quote-author {
+  color: color-mix(in srgb, var(--cream) 40%, transparent);
+}
+
+/* ── Auth card ── */
+body[data-theme="dark"] .auth-card,
+body[data-theme="neon"] .auth-card,
+body[data-theme="forest"] .auth-card,
+body[data-theme="ocean"] .auth-card,
+body[data-theme="rose"] .auth-card {
+  background: var(--card-bg);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+}
+
+/* ── Signout button ── */
+body[data-theme="dark"] .btn-signout,
+body[data-theme="neon"] .btn-signout {
+  color: rgba(245, 240, 232, 0.5);
+  border-color: rgba(255,255,255,0.1);
+}
+body[data-theme="forest"] .btn-signout,
+body[data-theme="ocean"] .btn-signout,
+body[data-theme="rose"] .btn-signout {
+  color: color-mix(in srgb, var(--cream) 35%, transparent);
+  border-color: rgba(255,255,255,0.08);
+}
+
+body[data-theme="dark"] .btn-signout:hover,
+body[data-theme="neon"] .btn-signout:hover {
+  color: rgba(245, 240, 232, 0.88);
+}
+body[data-theme="forest"] .btn-signout:hover,
+body[data-theme="ocean"] .btn-signout:hover,
+body[data-theme="rose"] .btn-signout:hover {
+  color: color-mix(in srgb, var(--cream) 70%, transparent);
+}
+
+/* ── Reminder items ── */
+body[data-theme="dark"] .reminder-item,
+body[data-theme="neon"] .reminder-item,
+body[data-theme="forest"] .reminder-item,
+body[data-theme="ocean"] .reminder-item,
+body[data-theme="rose"] .reminder-item {
+  background: var(--card-bg);
+}
+
+/* ── Session items ── */
+body[data-theme="dark"] .session-item,
+body[data-theme="neon"] .session-item,
+body[data-theme="forest"] .session-item,
+body[data-theme="ocean"] .session-item,
+body[data-theme="rose"] .session-item {
+  background: var(--card-bg);
+}
+
+/* ── Event items ── */
+body[data-theme="dark"] .event-item,
+body[data-theme="neon"] .event-item,
+body[data-theme="forest"] .event-item,
+body[data-theme="ocean"] .event-item,
+body[data-theme="rose"] .event-item {
+  background: var(--card-bg);
+}
+
+/* ── Calendar grid ── */
+body[data-theme="dark"] .cal-grid-wrap,
+body[data-theme="neon"] .cal-grid-wrap,
+body[data-theme="forest"] .cal-grid-wrap,
+body[data-theme="ocean"] .cal-grid-wrap,
+body[data-theme="rose"] .cal-grid-wrap {
+  background: var(--card-bg);
+}
+
+body[data-theme="dark"] .cal-day:hover,
+body[data-theme="neon"] .cal-day:hover,
+body[data-theme="forest"] .cal-day:hover,
+body[data-theme="ocean"] .cal-day:hover,
+body[data-theme="rose"] .cal-day:hover {
+  background: var(--cream2);
+}
+
+/* ── Reminders sidebar ── */
+body[data-theme="dark"] .reminders-sidebar,
+body[data-theme="neon"] .reminders-sidebar,
+body[data-theme="forest"] .reminders-sidebar,
+body[data-theme="ocean"] .reminders-sidebar,
+body[data-theme="rose"] .reminders-sidebar {
+  background: var(--card-bg);
+}
+
+/* ── Rem stat ── */
+body[data-theme="dark"] .rem-stat,
+body[data-theme="neon"] .rem-stat,
+body[data-theme="forest"] .rem-stat,
+body[data-theme="ocean"] .rem-stat,
+body[data-theme="rose"] .rem-stat {
+  background: var(--cream);
+}
+
+/* ── Focus tabs container ── */
+body[data-theme="dark"] .focus-tabs,
+body[data-theme="neon"] .focus-tabs,
+body[data-theme="forest"] .focus-tabs,
+body[data-theme="ocean"] .focus-tabs,
+body[data-theme="rose"] .focus-tabs {
+  background: var(--card-bg);
+}
+
+/* ── Quick btn ── */
+body[data-theme="dark"] .quick-btn,
+body[data-theme="neon"] .quick-btn,
+body[data-theme="forest"] .quick-btn,
+body[data-theme="ocean"] .quick-btn,
+body[data-theme="rose"] .quick-btn {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+}
+
+/* ── Filter btn ── */
+body[data-theme="dark"] .filter-btn,
+body[data-theme="neon"] .filter-btn,
+body[data-theme="forest"] .filter-btn,
+body[data-theme="ocean"] .filter-btn,
+body[data-theme="rose"] .filter-btn {
+  color: var(--text-secondary);
+}
+
+body[data-theme="dark"] .filter-btn:hover:not(.active),
+body[data-theme="neon"] .filter-btn:hover:not(.active),
+body[data-theme="forest"] .filter-btn:hover:not(.active),
+body[data-theme="ocean"] .filter-btn:hover:not(.active),
+body[data-theme="rose"] .filter-btn:hover:not(.active) {
+  background: var(--cream2);
+}
+
+/* ── Search bar ── */
+body[data-theme="dark"] .search-bar,
+body[data-theme="neon"] .search-bar,
+body[data-theme="forest"] .search-bar,
+body[data-theme="ocean"] .search-bar,
+body[data-theme="rose"] .search-bar {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
+
+/* ── Streak widget ── */
+body[data-theme="dark"] .streak-widget,
+body[data-theme="neon"] .streak-widget,
+body[data-theme="forest"] .streak-widget,
+body[data-theme="ocean"] .streak-widget,
+body[data-theme="rose"] .streak-widget {
+  background: color-mix(in srgb, var(--gold-light) 60%, transparent);
+}
+
+/* ══════════════════════════════════════════════
+   NEON PULSE — FULL CYBERPUNK THEME
+══════════════════════════════════════════════ */
+
+/* ── Animated grid background ── */
+body[data-theme="neon"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,212,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: neonGridMove 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes neonGridMove {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 40px; }
+}
+
+/* ── Scanline overlay ── */
+body[data-theme="neon"]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: scanlines 8s linear infinite;
+}
+
+@keyframes scanlines {
+  from { background-position: 0 0; }
+  to   { background-position: 0 100px; }
+}
+
+/* ── Sidebar: neon glow ── */
+body[data-theme="neon"] .sidebar {
+  background: #060610;
+  border-right: 1px solid rgba(0,245,212,0.15);
+  box-shadow: 4px 0 30px rgba(0,245,212,0.08);
+}
+
+body[data-theme="neon"] .sidebar::before {
+  background: radial-gradient(circle, rgba(0,245,212,0.12), transparent 70%);
+}
+
+body[data-theme="neon"] .sidebar::after {
+  background: radial-gradient(circle, rgba(0,136,255,0.08), transparent 70%);
+}
+
+body[data-theme="neon"] .sidebar-logo {
+  border-bottom-color: rgba(0,245,212,0.12);
+}
+
+body[data-theme="neon"] .logo-name {
+  color: #00f5d4;
+  text-shadow: 0 0 20px rgba(0,245,212,0.5), 0 0 40px rgba(0,245,212,0.2);
+  animation: neonTextPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonTextPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(0,245,212,0.5), 0 0 40px rgba(0,245,212,0.2); }
+  50%       { text-shadow: 0 0 30px rgba(0,245,212,0.8), 0 0 60px rgba(0,245,212,0.4); }
+}
+
+body[data-theme="neon"] .nav-item {
+  color: rgba(0,245,212,0.4);
+  border-color: transparent;
+}
+
+body[data-theme="neon"] .nav-item:hover {
+  color: rgba(0,245,212,0.9);
+  background: rgba(0,245,212,0.06);
+  border-color: rgba(0,245,212,0.15);
+}
+
+body[data-theme="neon"] .nav-item.active {
+  background: rgba(0,245,212,0.1);
+  color: #00f5d4;
+  border-color: rgba(0,245,212,0.3);
+  box-shadow: 0 0 12px rgba(0,245,212,0.1), inset 0 0 12px rgba(0,245,212,0.05);
+}
+
+body[data-theme="neon"] .nav-item.active::before {
+  background: #00f5d4;
+  box-shadow: 0 0 8px rgba(0,245,212,0.8);
+}
+
+body[data-theme="neon"] .nav-section-label {
+  color: rgba(0,245,212,0.2);
+}
+
+/* ── Main background ── */
+body[data-theme="neon"] .main {
+  background: #060610;
+}
+
+body[data-theme="neon"] .page-header {
+  background: rgba(6,6,16,0.92);
+  border-bottom-color: rgba(0,245,212,0.1);
+}
+
+body[data-theme="neon"] .page-title {
+  color: #e0f8f4;
+  text-shadow: 0 0 30px rgba(0,245,212,0.2);
+}
+
+body[data-theme="neon"] .page-label {
+  color: rgba(0,245,212,0.5);
+  letter-spacing: 3px;
+}
+
+/* ── Cards: neon glass ── */
+body[data-theme="neon"] .stat-card,
+body[data-theme="neon"] .dash-card,
+body[data-theme="neon"] .note-card,
+body[data-theme="neon"] .goal-card {
+  background: rgba(0,245,212,0.03);
+  border-color: rgba(0,245,212,0.12);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 0 1px rgba(0,245,212,0.06), inset 0 0 20px rgba(0,245,212,0.02);
+  transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+}
+
+body[data-theme="neon"] .stat-card:hover,
+body[data-theme="neon"] .dash-card:hover,
+body[data-theme="neon"] .note-card:hover,
+body[data-theme="neon"] .goal-card:hover {
+  border-color: rgba(0,245,212,0.35);
+  box-shadow: 0 0 20px rgba(0,245,212,0.12), 0 0 40px rgba(0,245,212,0.06), inset 0 0 20px rgba(0,245,212,0.04);
+}
+
+body[data-theme="neon"] .stat-card::before {
+  background: linear-gradient(90deg, #00f5d4, #0088ff);
+  box-shadow: 0 0 8px rgba(0,245,212,0.6);
+}
+
+body[data-theme="neon"] .note-card::before {
+  background: linear-gradient(90deg, #00f5d4, #0088ff);
+}
+
+/* ── Stat values ── */
+body[data-theme="neon"] .stat-value {
+  color: #00f5d4;
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
+body[data-theme="neon"] .stat-label,
+body[data-theme="neon"] .stat-sub {
+  color: rgba(0,245,212,0.5);
+}
+
+/* ── Timer display ── */
+body[data-theme="neon"] .timer-display {
+  color: #00f5d4;
+  text-shadow:
+    0 0 20px rgba(0,245,212,0.6),
+    0 0 40px rgba(0,245,212,0.3),
+    0 0 80px rgba(0,245,212,0.1);
+  animation: neonTimerPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonTimerPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(0,245,212,0.6), 0 0 40px rgba(0,245,212,0.3); }
+  50%       { text-shadow: 0 0 30px rgba(0,245,212,0.9), 0 0 60px rgba(0,245,212,0.5), 0 0 100px rgba(0,245,212,0.2); }
+}
+
+/* ── Ring ── */
+body[data-theme="neon"] .ring-track {
+  stroke: rgba(0,245,212,0.1);
+}
+
+body[data-theme="neon"] .ring-fill {
+  stroke: url(#neonGradient);
+  filter: drop-shadow(0 0 8px rgba(0,245,212,0.8)) drop-shadow(0 0 16px rgba(0,136,255,0.4));
+}
+
+/* ── Progress bars ── */
+body[data-theme="neon"] .goal-progress-fill {
+  background: linear-gradient(90deg, #00f5d4, #0088ff);
+  box-shadow: 0 0 8px rgba(0,245,212,0.5);
+}
+
+body[data-theme="neon"] .goal-progress-bar {
+  background: rgba(0,245,212,0.08);
+}
+
+/* ── Buttons ── */
+body[data-theme="neon"] .btn-primary,
+body[data-theme="neon"] .btn-save,
+body[data-theme="neon"] .btn-start,
+body[data-theme="neon"] .auth-btn {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 20px rgba(0,245,212,0.3);
+}
+
+body[data-theme="neon"] .btn-primary:hover,
+body[data-theme="neon"] .btn-save:hover,
+body[data-theme="neon"] .btn-start:hover,
+body[data-theme="neon"] .auth-btn:hover {
+  box-shadow: 0 0 30px rgba(0,245,212,0.5), 0 0 60px rgba(0,245,212,0.2);
+  transform: translateY(-2px);
+}
+
+body[data-theme="neon"] .btn-start.running {
+  background: linear-gradient(135deg, #ff0080, #ff4444);
+  box-shadow: 0 0 20px rgba(255,0,128,0.4);
+}
+
+body[data-theme="neon"] .btn-reset,
+body[data-theme="neon"] .btn-cancel {
+  border-color: rgba(0,245,212,0.2);
+  color: rgba(0,245,212,0.7);
+}
+
+body[data-theme="neon"] .btn-reset:hover,
+body[data-theme="neon"] .btn-cancel:hover {
+  background: rgba(0,245,212,0.06);
+  border-color: rgba(0,245,212,0.4);
+  color: #00f5d4;
+}
+
+/* ── Quick buttons ── */
+body[data-theme="neon"] .quick-btn {
+  background: rgba(0,245,212,0.04);
+  border-color: rgba(0,245,212,0.12);
+  color: rgba(0,245,212,0.6);
+}
+
+body[data-theme="neon"] .quick-btn:hover {
+  background: rgba(0,245,212,0.08) !important;
+  border-color: rgba(0,245,212,0.4) !important;
+  color: #00f5d4 !important;
+  box-shadow: 0 0 16px rgba(0,245,212,0.15);
+}
+
+/* ── Focus tabs ── */
+body[data-theme="neon"] .focus-tabs {
+  background: rgba(0,245,212,0.04);
+  border-color: rgba(0,245,212,0.12);
+}
+
+body[data-theme="neon"] .focus-tab {
+  color: rgba(0,245,212,0.5);
+}
+
+body[data-theme="neon"] .focus-tab.active {
+  background: rgba(0,245,212,0.12);
+  color: #00f5d4;
+  border: 1px solid rgba(0,245,212,0.3);
+  box-shadow: 0 0 12px rgba(0,245,212,0.15);
+}
+
+/* ── Filter buttons ── */
+body[data-theme="neon"] .filter-btn {
+  border-color: rgba(0,245,212,0.12);
+  color: rgba(0,245,212,0.5);
+}
+
+body[data-theme="neon"] .filter-btn.active {
+  background: rgba(0,245,212,0.12);
+  color: #00f5d4;
+  border-color: rgba(0,245,212,0.3);
+}
+
+/* ── Search ── */
+body[data-theme="neon"] .search-bar {
+  background: rgba(0,245,212,0.04);
+  border-color: rgba(0,245,212,0.12);
+  color: #e0f8f4;
+}
+
+body[data-theme="neon"] .search-bar:focus {
+  border-color: rgba(0,245,212,0.4);
+  box-shadow: 0 0 0 3px rgba(0,245,212,0.1);
+}
+
+/* ── Modals ── */
+body[data-theme="neon"] .modal,
+body[data-theme="neon"] .modal-sm,
+body[data-theme="neon"] .auth-card {
+  background: rgba(9,9,26,0.95);
+  border-color: rgba(0,245,212,0.2);
+  box-shadow: 0 0 40px rgba(0,245,212,0.1), 0 32px 80px rgba(0,0,0,0.6);
+}
+
+body[data-theme="neon"] .modal-foot {
+  background: rgba(6,6,16,0.8);
+  border-top-color: rgba(0,245,212,0.1);
+}
+
+body[data-theme="neon"] .modal select,
+body[data-theme="neon"] .modal input,
+body[data-theme="neon"] .modal-textarea {
+  background: rgba(0,245,212,0.04);
+  border-color: rgba(0,245,212,0.15);
+  color: #e0f8f4;
+}
+
+body[data-theme="neon"] .modal select:focus,
+body[data-theme="neon"] .modal input:focus,
+body[data-theme="neon"] .modal-textarea:focus {
+  border-color: rgba(0,245,212,0.4);
+  box-shadow: 0 0 0 3px rgba(0,245,212,0.1);
+}
+
+/* ── Toast ── */
+body[data-theme="neon"] .toast {
+  background: linear-gradient(135deg, rgba(0,245,212,0.15), rgba(0,136,255,0.15));
+  border: 1px solid rgba(0,245,212,0.3);
+  color: #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.2);
+  backdrop-filter: blur(20px);
+}
+
+/* ── FAB ── */
+body[data-theme="neon"] .fab {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
+body[data-theme="neon"] .fab:hover {
+  box-shadow: 0 0 30px rgba(0,245,212,0.6), 0 0 60px rgba(0,245,212,0.2);
+}
+
+body[data-theme="neon"] .fab-item-label {
+  background: rgba(9,9,26,0.95);
+  color: #00f5d4;
+  border: 1px solid rgba(0,245,212,0.2);
+}
+
+body[data-theme="neon"] .fab-item-btn {
+  background: rgba(0,245,212,0.06);
+  border-color: rgba(0,245,212,0.2);
+  color: #00f5d4;
+}
+
+/* ── Calendar ── */
+body[data-theme="neon"] .cal-grid-wrap {
+  background: rgba(9,9,26,0.8);
+  border-color: rgba(0,245,212,0.12);
+}
+
+body[data-theme="neon"] .cal-day {
+  border-color: rgba(0,245,212,0.06);
+}
+
+body[data-theme="neon"] .cal-day:hover {
+  background: rgba(0,245,212,0.05);
+}
+
+body[data-theme="neon"] .cal-day.today .day-num {
+  background: #00f5d4;
+  color: #060610;
+  box-shadow: 0 0 12px rgba(0,245,212,0.6);
+}
+
+/* ── Reminder items ── */
+body[data-theme="neon"] .reminder-item {
+  background: rgba(0,245,212,0.03);
+  border-color: rgba(0,245,212,0.1);
+}
+
+body[data-theme="neon"] .reminder-item:hover {
+  border-color: rgba(0,245,212,0.25);
+  box-shadow: 0 0 12px rgba(0,245,212,0.08);
+}
+
+body[data-theme="neon"] .reminder-item::before {
+  background: #00f5d4;
+  box-shadow: 0 0 6px rgba(0,245,212,0.6);
+}
+
+/* ── Scrollbar ── */
+body[data-theme="neon"] ::-webkit-scrollbar-thumb {
+  background: rgba(0,245,212,0.25);
+}
+
+body[data-theme="neon"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0,245,212,0.45);
+}
+
+/* ── Ambient orbs for neon ── */
+body[data-theme="neon"] .orb-1 {
+  background: radial-gradient(circle, rgba(0,245,212,0.15), transparent 70%);
+}
+
+body[data-theme="neon"] .orb-2 {
+  background: radial-gradient(circle, rgba(0,136,255,0.12), transparent 70%);
+}
+
+body[data-theme="neon"] .orb-3 {
+  background: radial-gradient(circle, rgba(180,0,255,0.1), transparent 70%);
+}
+
+body[data-theme="neon"] .orb-4 {
+  background: radial-gradient(circle, rgba(0,245,160,0.08), transparent 70%);
+}
+
+/* ── Quote banner ── */
+body[data-theme="neon"] .quote-banner {
+  background: linear-gradient(135deg, rgba(0,245,212,0.08), rgba(0,136,255,0.06));
+  border: 1px solid rgba(0,245,212,0.15);
+  box-shadow: 0 0 20px rgba(0,245,212,0.06);
+}
+
+/* ── Streak widget ── */
+body[data-theme="neon"] .streak-widget {
+  background: rgba(0,245,160,0.06);
+  border-color: rgba(0,245,160,0.2);
+}
+
+body[data-theme="neon"] .streak-dot.active {
+  background: #00f5a0;
+  box-shadow: 0 0 8px rgba(0,245,160,0.6);
+}
+
+/* ── Dash card title border ── */
+body[data-theme="neon"] .dash-card-title {
+  border-bottom-color: rgba(0,245,212,0.1);
+}
+
+/* ── Page header scrolled ── */
+body[data-theme="neon"] .page-header.scrolled {
+  border-bottom-color: rgba(0,245,212,0.1);
+  box-shadow: 0 4px 20px rgba(0,245,212,0.05);
+}
+
+/* ══════════════════════════════════════════════
+   MIDNIGHT — FULL DARK THEME
+   Deep space, moonlight, soft violet glow
+══════════════════════════════════════════════ */
+
+/* ── Starfield background ── */
+body[data-theme="dark"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 10%, rgba(167,139,250,0.12), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(99,102,241,0.08), transparent 50%),
+    radial-gradient(ellipse 30% 30% at 85% 70%, rgba(147,197,253,0.06), transparent 40%);
+  animation: midnightDrift 18s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -2;
+}
+
+@keyframes midnightDrift {
+  0%   { transform: scale(1)    translate(0px,   0px);  }
+  33%  { transform: scale(1.04) translate(-20px, 15px); }
+  66%  { transform: scale(0.97) translate(15px, -10px); }
+  100% { transform: scale(1.06) translate(-10px, 20px); }
+}
+
+/* ── Moon ── */
+body[data-theme="dark"] .ambient-orbs::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%,
+    #fef9c3 0%,
+    #fde68a 30%,
+    #fcd34d 55%,
+    rgba(252,211,77,0.3) 75%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 30px rgba(252,211,77,0.35),
+    0 0 60px rgba(252,211,77,0.15),
+    0 0 100px rgba(252,211,77,0.08);
+  animation: moonFloat 12s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ── Moon crescent shadow ── */
+body[data-theme="dark"] .ambient-orbs::after {
+  content: '';
+  position: absolute;
+  top: 44px;
+  right: 96px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%,
+    #0d0d18 0%,
+    rgba(13,13,24,0.95) 40%,
+    transparent 70%
+  );
+  animation: moonFloat 12s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes moonFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(2deg); }
+}
+
+/* ── Stars ── */
+body[data-theme="dark"] .orb-1 {
+  background: none;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  border-radius: 0;
+  filter: none;
+  animation: none;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 25% 8%,  rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 40% 20%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 55% 5%,  rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 70% 12%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 85% 18%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 15% 35%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 30% 42%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 75% 38%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 90% 25%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 5%  50%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 20% 60%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 65% 48%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 80% 55%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 35% 70%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 50% 75%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 92% 65%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 12% 80%, rgba(255,255,255,0.8), transparent);
+  animation: starsTwinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes starsTwinkle {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1;   }
+  100% { opacity: 0.7; }
+}
+
+/* ── Moonlight glow orb ── */
+body[data-theme="dark"] .orb-2 {
+  background: radial-gradient(circle, rgba(252,211,77,0.08), transparent 70%);
+  top: 0; right: 0; left: auto;
+  width: 400px; height: 400px;
+  animation: moonGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes moonGlow {
+  0%   { opacity: 0.5; transform: scale(0.9); }
+  100% { opacity: 1;   transform: scale(1.1); }
+}
+
+/* ── Purple nebula orb ── */
+body[data-theme="dark"] .orb-3 {
+  background: radial-gradient(circle, rgba(167,139,250,0.1), transparent 70%);
+  bottom: 10%; left: 10%;
+  width: 500px; height: 500px;
+  animation: nebulaFloat 22s ease-in-out infinite;
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(30px, -20px) scale(1.05); }
+  66%       { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+/* ── Blue nebula orb ── */
+body[data-theme="dark"] .orb-4 {
+  background: radial-gradient(circle, rgba(99,102,241,0.08), transparent 70%);
+  top: 40%; right: 5%;
+  width: 350px; height: 350px;
+  animation: nebulaFloat 28s ease-in-out infinite reverse;
+}
+
+/* ── Sidebar ── */
+body[data-theme="dark"] .sidebar {
+  background: #0a0a14;
+  border-right: 1px solid rgba(167,139,250,0.1);
+  box-shadow: 4px 0 30px rgba(0,0,0,0.4);
+}
+
+body[data-theme="dark"] .sidebar::before {
+  background: radial-gradient(circle, rgba(167,139,250,0.1), transparent 70%);
+}
+
+body[data-theme="dark"] .sidebar-logo {
+  border-bottom-color: rgba(167,139,250,0.1);
+}
+
+body[data-theme="dark"] .logo-name {
+  color: #e8e4f8;
+  text-shadow: 0 0 20px rgba(167,139,250,0.3);
+}
+
+body[data-theme="dark"] .nav-item {
+  color: rgba(232,228,248,0.35);
+}
+
+body[data-theme="dark"] .nav-item:hover {
+  color: rgba(232,228,248,0.8);
+  background: rgba(167,139,250,0.06);
+}
+
+body[data-theme="dark"] .nav-item.active {
+  background: rgba(167,139,250,0.12);
+  color: #c4b5fd;
+  border-color: rgba(167,139,250,0.25);
+  box-shadow: 0 0 12px rgba(167,139,250,0.08);
+}
+
+body[data-theme="dark"] .nav-item.active::before {
+  background: #a78bfa;
+  box-shadow: 0 0 8px rgba(167,139,250,0.6);
+}
+
+/* ── Main ── */
+body[data-theme="dark"] .main {
+  background: #0d0d18;
+}
+
+body[data-theme="dark"] .page-header {
+  background: rgba(13,13,24,0.92);
+  border-bottom-color: rgba(167,139,250,0.08);
+}
+
+body[data-theme="dark"] .page-title {
+  color: #e8e4f8;
+}
+
+body[data-theme="dark"] .page-label {
+  color: rgba(167,139,250,0.5);
+}
+
+/* ── Cards ── */
+body[data-theme="dark"] .stat-card,
+body[data-theme="dark"] .dash-card,
+body[data-theme="dark"] .note-card,
+body[data-theme="dark"] .goal-card {
+  background: rgba(167,139,250,0.04);
+  border-color: rgba(167,139,250,0.1);
+  box-shadow: 0 0 0 1px rgba(167,139,250,0.04), inset 0 0 20px rgba(167,139,250,0.02);
+}
+
+body[data-theme="dark"] .stat-card:hover,
+body[data-theme="dark"] .dash-card:hover,
+body[data-theme="dark"] .note-card:hover,
+body[data-theme="dark"] .goal-card:hover {
+  border-color: rgba(167,139,250,0.25);
+  box-shadow: 0 0 20px rgba(167,139,250,0.08), inset 0 0 20px rgba(167,139,250,0.03);
+}
+
+body[data-theme="dark"] .stat-card::before {
+  background: linear-gradient(90deg, #a78bfa, #818cf8);
+  box-shadow: 0 0 8px rgba(167,139,250,0.4);
+}
+
+body[data-theme="dark"] .note-card::before {
+  background: linear-gradient(90deg, #a78bfa, #818cf8);
+}
+
+/* ── Stat values ── */
+body[data-theme="dark"] .stat-value {
+  color: #e8e4f8;
+  text-shadow: 0 0 20px rgba(167,139,250,0.2);
+}
+
+/* ── Timer ── */
+body[data-theme="dark"] .timer-display {
+  color: #c4b5fd;
+  text-shadow: 0 0 30px rgba(167,139,250,0.3), 0 0 60px rgba(167,139,250,0.1);
+}
+
+/* ── Ring ── */
+body[data-theme="dark"] .ring-track {
+  stroke: rgba(167,139,250,0.12);
+}
+
+body[data-theme="dark"] .ring-fill {
+  stroke: #a78bfa;
+  filter: drop-shadow(0 0 8px rgba(167,139,250,0.6));
+}
+
+/* ── Progress bars ── */
+body[data-theme="dark"] .goal-progress-fill {
+  background: linear-gradient(90deg, #a78bfa, #818cf8);
+}
+
+/* ── Buttons ── */
+body[data-theme="dark"] .btn-primary,
+body[data-theme="dark"] .btn-save,
+body[data-theme="dark"] .btn-start,
+body[data-theme="dark"] .auth-btn {
+  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  color: #0d0d18;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 16px rgba(167,139,250,0.25);
+}
+
+body[data-theme="dark"] .btn-primary:hover,
+body[data-theme="dark"] .btn-save:hover,
+body[data-theme="dark"] .btn-start:hover,
+body[data-theme="dark"] .auth-btn:hover {
+  box-shadow: 0 0 24px rgba(167,139,250,0.4);
+}
+
+body[data-theme="dark"] .btn-start.running {
+  background: linear-gradient(135deg, #f472b6, #ec4899);
+  box-shadow: 0 0 16px rgba(244,114,182,0.3);
+}
+
+body[data-theme="dark"] .btn-reset,
+body[data-theme="dark"] .btn-cancel {
+  border-color: rgba(167,139,250,0.2);
+  color: rgba(196,181,253,0.7);
+}
+
+body[data-theme="dark"] .btn-reset:hover,
+body[data-theme="dark"] .btn-cancel:hover {
+  background: rgba(167,139,250,0.06);
+  border-color: rgba(167,139,250,0.35);
+  color: #c4b5fd;
+}
+
+/* ── Quick buttons ── */
+body[data-theme="dark"] .quick-btn {
+  background: rgba(167,139,250,0.04);
+  border-color: rgba(167,139,250,0.1);
+  color: rgba(196,181,253,0.6);
+}
+
+body[data-theme="dark"] .quick-btn:hover {
+  background: rgba(167,139,250,0.08) !important;
+  border-color: rgba(167,139,250,0.3) !important;
+  color: #c4b5fd !important;
+  box-shadow: 0 0 12px rgba(167,139,250,0.1);
+}
+
+/* ── Focus tabs ── */
+body[data-theme="dark"] .focus-tabs {
+  background: rgba(167,139,250,0.04);
+  border-color: rgba(167,139,250,0.1);
+}
+
+body[data-theme="dark"] .focus-tab {
+  color: rgba(196,181,253,0.5);
+}
+
+body[data-theme="dark"] .focus-tab.active {
+  background: rgba(167,139,250,0.12);
+  color: #c4b5fd;
+  border: 1px solid rgba(167,139,250,0.25);
+}
+
+/* ── Filter buttons ── */
+body[data-theme="dark"] .filter-btn {
+  border-color: rgba(167,139,250,0.1);
+  color: rgba(196,181,253,0.5);
+}
+
+body[data-theme="dark"] .filter-btn.active {
+  background: rgba(167,139,250,0.12);
+  color: #c4b5fd;
+  border-color: rgba(167,139,250,0.25);
+}
+
+/* ── Search ── */
+body[data-theme="dark"] .search-bar {
+  background: rgba(167,139,250,0.04);
+  border-color: rgba(167,139,250,0.1);
+  color: #e8e4f8;
+}
+
+body[data-theme="dark"] .search-bar:focus {
+  border-color: rgba(167,139,250,0.35);
+  box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+}
+
+/* ── Modals ── */
+body[data-theme="dark"] .modal,
+body[data-theme="dark"] .modal-sm,
+body[data-theme="dark"] .auth-card {
+  background: rgba(13,13,24,0.97);
+  border-color: rgba(167,139,250,0.15);
+  box-shadow: 0 0 40px rgba(167,139,250,0.08), 0 32px 80px rgba(0,0,0,0.6);
+}
+
+body[data-theme="dark"] .modal-foot {
+  background: rgba(10,10,20,0.8);
+  border-top-color: rgba(167,139,250,0.08);
+}
+
+body[data-theme="dark"] .modal select,
+body[data-theme="dark"] .modal input,
+body[data-theme="dark"] .modal-textarea {
+  background: rgba(167,139,250,0.04);
+  border-color: rgba(167,139,250,0.12);
+  color: #e8e4f8;
+}
+
+body[data-theme="dark"] .modal select:focus,
+body[data-theme="dark"] .modal input:focus,
+body[data-theme="dark"] .modal-textarea:focus {
+  border-color: rgba(167,139,250,0.35);
+  box-shadow: 0 0 0 3px rgba(167,139,250,0.08);
+}
+
+/* ── Toast ── */
+body[data-theme="dark"] .toast {
+  background: rgba(13,13,24,0.95);
+  border: 1px solid rgba(167,139,250,0.2);
+  color: #c4b5fd;
+  box-shadow: 0 0 20px rgba(167,139,250,0.15);
+  backdrop-filter: blur(20px);
+}
+
+/* ── FAB ── */
+body[data-theme="dark"] .fab {
+  background: linear-gradient(135deg, #a78bfa, #818cf8);
+  color: #0d0d18;
+  box-shadow: 0 0 20px rgba(167,139,250,0.3);
+}
+
+body[data-theme="dark"] .fab:hover {
+  box-shadow: 0 0 30px rgba(167,139,250,0.5);
+}
+
+body[data-theme="dark"] .fab-item-label {
+  background: rgba(13,13,24,0.95);
+  color: #c4b5fd;
+  border: 1px solid rgba(167,139,250,0.15);
+}
+
+body[data-theme="dark"] .fab-item-btn {
+  background: rgba(167,139,250,0.06);
+  border-color: rgba(167,139,250,0.15);
+  color: #c4b5fd;
+}
+
+/* ── Calendar ── */
+body[data-theme="dark"] .cal-grid-wrap {
+  background: rgba(13,13,24,0.8);
+  border-color: rgba(167,139,250,0.1);
+}
+
+body[data-theme="dark"] .cal-day {
+  border-color: rgba(167,139,250,0.05);
+}
+
+body[data-theme="dark"] .cal-day:hover {
+  background: rgba(167,139,250,0.05);
+}
+
+body[data-theme="dark"] .cal-day.today .day-num {
+  background: #a78bfa;
+  color: #0d0d18;
+  box-shadow: 0 0 12px rgba(167,139,250,0.5);
+}
+
+/* ── Reminder items ── */
+body[data-theme="dark"] .reminder-item {
+  background: rgba(167,139,250,0.03);
+  border-color: rgba(167,139,250,0.08);
+}
+
+body[data-theme="dark"] .reminder-item:hover {
+  border-color: rgba(167,139,250,0.2);
+}
+
+body[data-theme="dark"] .reminder-item::before {
+  background: #a78bfa;
+  box-shadow: 0 0 6px rgba(167,139,250,0.5);
+}
+
+/* ── Quote banner ── */
+body[data-theme="dark"] .quote-banner {
+  background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(99,102,241,0.06));
+  border: 1px solid rgba(167,139,250,0.12);
+}
+
+/* ── Streak widget ── */
+body[data-theme="dark"] .streak-widget {
+  background: rgba(252,211,77,0.06);
+  border-color: rgba(252,211,77,0.15);
+}
+
+body[data-theme="dark"] .streak-dot.active {
+  background: #fcd34d;
+  box-shadow: 0 0 8px rgba(252,211,77,0.5);
+}
+
+/* ── Scrollbar ── */
+body[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(167,139,250,0.2);
+}
+
+body[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(167,139,250,0.4);
+}
+
+/* ── Ambient orbs override ── */
+body[data-theme="dark"] .orb-1 { opacity: 1; }
+body[data-theme="dark"] .orb-2 { opacity: 1; }
+body[data-theme="dark"] .orb-3 { opacity: 1; }
+body[data-theme="dark"] .orb-4 { opacity: 1; }
+
+/* ── Dash card title ── */
+body[data-theme="dark"] .dash-card-title {
+  border-bottom-color: rgba(167,139,250,0.08);
+}
+
+/* ── Page header scrolled ── */
+body[data-theme="dark"] .page-header.scrolled {
+  border-bottom-color: rgba(167,139,250,0.1);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ══════════════════════════════════════════════
+   MIDNIGHT — TEXT VISIBILITY FIXES
+   Ensures all text is readable on dark backgrounds
+══════════════════════════════════════════════ */
+
+/* ── Base text ── */
+body[data-theme="dark"],
+body[data-theme="dark"] .main {
+  color: var(--text-primary);
+}
+
+/* ── All headings and labels ── */
+body[data-theme="dark"] .page-title,
+body[data-theme="dark"] .dash-greeting,
+body[data-theme="dark"] .cal-month-title,
+body[data-theme="dark"] .modal-head-title,
+body[data-theme="dark"] .auth-heading,
+body[data-theme="dark"] .auth-logo-name,
+body[data-theme="dark"] .rem-stat-num,
+body[data-theme="dark"] .streak-count,
+body[data-theme="dark"] .settings-about-logo {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .page-label,
+body[data-theme="dark"] .stat-label,
+body[data-theme="dark"] .dash-card-title,
+body[data-theme="dark"] .event-list-title,
+body[data-theme="dark"] .sessions-title,
+body[data-theme="dark"] .rem-sidebar-title,
+body[data-theme="dark"] .today-section-title,
+body[data-theme="dark"] .settings-section-title,
+body[data-theme="dark"] .streak-label,
+body[data-theme="dark"] .auth-logo-sub,
+body[data-theme="dark"] .auth-label,
+body[data-theme="dark"] .rem-stat-label,
+body[data-theme="dark"] .settings-about-sub,
+body[data-theme="dark"] .settings-about-version {
+  color: var(--text-muted);
+}
+
+/* ── Card content ── */
+body[data-theme="dark"] .note-title,
+body[data-theme="dark"] .goal-title,
+body[data-theme="dark"] .event-name,
+body[data-theme="dark"] .reminder-title,
+body[data-theme="dark"] .session-task,
+body[data-theme="dark"] .upcoming-name,
+body[data-theme="dark"] .settings-row-label {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .note-preview,
+body[data-theme="dark"] .note-date,
+body[data-theme="dark"] .goal-desc,
+body[data-theme="dark"] .goal-deadline,
+body[data-theme="dark"] .event-time-label,
+body[data-theme="dark"] .reminder-when,
+body[data-theme="dark"] .session-duration,
+body[data-theme="dark"] .session-time,
+body[data-theme="dark"] .upcoming-when,
+body[data-theme="dark"] .settings-row-sub,
+body[data-theme="dark"] .auth-subheading,
+body[data-theme="dark"] .streak-sub {
+  color: var(--text-muted);
+}
+
+/* ── Stat values ── */
+body[data-theme="dark"] .stat-value {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .stat-sub,
+body[data-theme="dark"] .stat-label,
+body[data-theme="dark"] .stat-unit {
+  color: var(--text-muted);
+}
+
+/* ── Dashboard numbers ── */
+body[data-theme="dark"] #weekly-focus-total {
+  color: var(--text-primary);
+}
+
+/* ── Calendar ── */
+body[data-theme="dark"] .day-num {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .cal-head-cell {
+  color: var(--text-muted);
+}
+
+body[data-theme="dark"] .cal-month-title {
+  color: var(--text-primary);
+}
+
+/* ── Modal inputs ── */
+body[data-theme="dark"] .modal-title-input,
+body[data-theme="dark"] .modal-title-input::placeholder {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .modal-textarea::placeholder,
+body[data-theme="dark"] .modal select,
+body[data-theme="dark"] .modal input {
+  color: var(--text-primary);
+}
+
+/* ── Auth inputs ── */
+body[data-theme="dark"] .auth-input {
+  background: rgba(167,139,250,0.06);
+  border-color: rgba(167,139,250,0.15);
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .auth-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Focus timer task input ── */
+body[data-theme="dark"] .timer-task-input {
+  color: var(--text-primary);
+  border-bottom-color: rgba(167,139,250,0.2);
+}
+
+body[data-theme="dark"] .timer-task-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Duration row ── */
+body[data-theme="dark"] .focus-duration-row {
+  color: var(--text-muted);
+  border-top-color: var(--border);
+}
+
+/* ── Reminder check ── */
+body[data-theme="dark"] .reminder-check {
+  border-color: var(--border2);
+  color: var(--text-muted);
+}
+
+/* ── Settings rows ── */
+body[data-theme="dark"] .settings-row {
+  border-bottom-color: var(--border);
+}
+
+body[data-theme="dark"] .settings-section {
+  background: var(--card-bg);
+  border-color: var(--border);
+}
+
+/* ── Theme card ── */
+body[data-theme="dark"] .theme-card {
+  background: var(--cream2);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .theme-name {
+  color: var(--text-primary);
+}
+
+body[data-theme="dark"] .theme-desc {
+  color: var(--text-muted);
+}
+
+/* ── Font size buttons ── */
+body[data-theme="dark"] .fsize-btn {
+  border-color: var(--border2);
+  color: var(--text-secondary);
+}
+
+/* ── Toggle switch ── */
+body[data-theme="dark"] .toggle-track {
+  background: var(--cream3);
+}
+
+/* ── Dash card link ── */
+body[data-theme="dark"] .dash-card-link {
+  color: var(--accent);
+}
+
+/* ── Chart bars ── */
+body[data-theme="dark"] .chart-bar {
+  background: var(--cream3);
+}
+
+body[data-theme="dark"] .chart-label {
+  color: var(--text-muted);
+}
+
+/* ── Color dots in calendar modal ── */
+body[data-theme="dark"] .color-dot.sel {
+  border-color: var(--text-primary);
+}
+
+/* ── Settings btn ── */
+body[data-theme="dark"] .settings-btn {
+  border-color: var(--border2);
+  color: var(--text-secondary);
+}
+
+body[data-theme="dark"] .settings-btn:hover {
+  background: var(--cream2);
+  color: var(--text-primary);
+}
+
+/* ── Settings danger row ── */
+body[data-theme="dark"] .settings-row-danger .settings-row-label {
+  color: #f87171;
+}
+
+body[data-theme="dark"] .settings-btn-danger {
+  border-color: rgba(248,113,113,0.3);
+  color: #f87171;
+}
+
+body[data-theme="dark"] .settings-btn-danger:hover {
+  background: rgba(248,113,113,0.1);
+}
+
+/* ==========================================================================
+   SETTINGS INTERACTION FIXES
+   Makes Text Size actually scale fixed-pixel UI text and makes Compact Sidebar
+   resilient even when older nav items contain plain text nodes.
+   ========================================================================== */
+
+body {
+  --lf-font-scale: 1;
+}
+
+body[data-fontsize="small"] {
+  --lf-font-scale: 0.92;
+  font-size: 14px;
+}
+
+body[data-fontsize="medium"],
+body:not([data-fontsize]) {
+  --lf-font-scale: 1;
+  font-size: 15px;
+}
+
+body[data-fontsize="large"] {
+  --lf-font-scale: 1.12;
+  font-size: 17px;
+}
+
+body[data-fontsize] :where(
+  .nav-item,
+  .quick-btn,
+  .settings-btn,
+  .modal-btn,
+  .focus-action,
+  .daily-task-text,
+  .habit-title,
+  .goal-card,
+  .note-card,
+  .reminder-item,
+  .event-item,
+  .search-result-item,
+  .empty-text
+) {
+  font-size: calc(13.5px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(
+  input,
+  textarea,
+  select,
+  .today-focus-input,
+  .timer-task-input,
+  .modal-title-input,
+  .modal-textarea,
+  .search-bar,
+  #global-search,
+  #command-input
+) {
+  font-size: calc(13.5px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(.page-title) {
+  font-size: clamp(30px, calc(38px * var(--lf-font-scale)), 46px) !important;
+}
+
+body[data-fontsize] :where(.card-title, .today-focus-title, .settings-row-label, .theme-name) {
+  font-size: calc(14px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(.page-subtitle, .settings-row-sub, .theme-desc, .user-name, .today-focus-time-label, .chart-label) {
+  font-size: calc(12px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(.nav-section-label, .settings-section-title, .today-focus-kicker, .fsize-btn span) {
+  font-size: calc(10px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(.fsize-btn) {
+  font-size: calc(16px * var(--lf-font-scale)) !important;
+}
+
+body[data-fontsize] :where(.mobile-nav-label) {
+  font-size: clamp(8px, calc(8.5px * var(--lf-font-scale)), 10px) !important;
+}
+
+.nav-item {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.nav-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar,
+.sidebar-logo,
+.sidebar-nav,
+.nav-item,
+.sidebar-footer,
+.user-info,
+.logo-name {
+  transition: width 0.24s ease, padding 0.24s ease, gap 0.24s ease, font-size 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
+}
+
+body[data-compact="true"] .sidebar {
+  width: 76px !important;
+  overflow: hidden;
+}
+
+body[data-compact="true"] .sidebar-logo {
+  display: none !important;
+}
+
+body[data-compact="true"] .logo-name::after {
+  content: none;
+}
+
+body[data-compact="true"] .sidebar-nav {
+  padding: 14px 10px !important;
+  align-items: center;
+  gap: 6px;
+}
+
+body[data-compact="true"] .nav-item {
+  width: 52px;
+  height: 52px;
+  padding: 0 !important;
+  justify-content: center;
+  gap: 0 !important;
+  font-size: 0 !important;
+  border-radius: 16px;
+}
+
+body[data-compact="true"] .nav-label,
+body[data-compact="true"] .nav-item > span:not(.nav-icon):not(.nav-badge),
+body[data-compact="true"] .nav-section-label,
+body[data-compact="true"] .logo-sub,
+body[data-compact="true"] .user-name,
+body[data-compact="true"] .user-sub,
+body[data-compact="true"] .btn-signout {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  overflow: hidden !important;
+}
+
+body[data-compact="true"] .nav-icon {
+  width: 24px !important;
+  height: 24px !important;
+  display: grid !important;
+  place-items: center;
+  font-size: 18px !important;
+  line-height: 1;
+}
+
+body[data-compact="true"] .nav-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+body[data-compact="true"] .nav-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  font-size: 9px !important;
+  line-height: 1;
+}
+
+body[data-compact="true"] .sidebar-footer {
+  padding: 12px 10px 18px !important;
+}
+
+body[data-compact="true"] .user-info {
+  width: 52px;
+  height: 52px;
+  padding: 0 !important;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+body[data-compact="true"] .user-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+body[data-compact="true"] .nav-item.active::before {
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   MONOCHROME THEME — Pure black & white
+══════════════════════════════════════════════════════════════════ */
+
+body[data-theme="mono"] {
+  --cream:         #ffffff;
+  --cream2:        #f0f0f0;
+  --cream3:        #e0e0e0;
+  --warm-dark:     #000000;
+  --warm-mid:      #1a1a1a;
+  --card-bg:       #ffffff;
+  --text-primary:  #000000;
+  --text-secondary:#444444;
+  --text-muted:    #888888;
+  --accent:        #000000;
+  --accent2:       #333333;
+  --accent-light:  #f0f0f0;
+  --accent-glow:   rgba(0,0,0,0.08);
+  --green:         #333333;
+  --green-light:   #f0f0f0;
+  --blue:          #333333;
+  --blue-light:    #f0f0f0;
+  --gold:          #555555;
+  --gold-light:    #f5f5f5;
+  --border:        rgba(0,0,0,0.1);
+  --border2:       rgba(0,0,0,0.2);
+  --shadow:        0 2px 20px rgba(0,0,0,0.08);
+  --shadow2:       0 8px 40px rgba(0,0,0,0.14);
+}
+
+/* ── Sidebar ── */
+body[data-theme="mono"] .sidebar {
+  background: #000000;
+  box-shadow: 4px 0 24px rgba(0,0,0,0.2);
+}
+
+body[data-theme="mono"] .sidebar::before {
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+}
+
+body[data-theme="mono"] .sidebar::after {
+  background: none;
+}
+
+body[data-theme="mono"] .logo-name {
+  color: #ffffff;
+}
+
+body[data-theme="mono"] .logo-sub {
+  color: rgba(255,255,255,0.3);
+}
+
+body[data-theme="mono"] .nav-item {
+  color: rgba(255,255,255,0.45);
+}
+
+body[data-theme="mono"] .nav-item:hover {
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.07);
+}
+
+body[data-theme="mono"] .nav-item.active {
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: none;
+}
+
+body[data-theme="mono"] .nav-item.active::before {
+  background: #ffffff;
+}
+
+body[data-theme="mono"] .nav-section-label {
+  color: rgba(255,255,255,0.2);
+}
+
+body[data-theme="mono"] .nav-badge {
+  background: #ffffff;
+  color: #000000;
+}
+
+body[data-theme="mono"] .user-name {
+  color: rgba(255,255,255,0.75);
+}
+
+body[data-theme="mono"] .user-sub {
+  color: rgba(255,255,255,0.3);
+}
+
+body[data-theme="mono"] .user-avatar {
+  background: #ffffff;
+  color: #000000;
+}
+
+body[data-theme="mono"] .btn-signout {
+  color: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.1);
+}
+
+body[data-theme="mono"] .btn-signout:hover {
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ── Main area ── */
+body[data-theme="mono"] .main {
+  background: #ffffff;
+}
+
+body[data-theme="mono"] .page-header {
+  background: rgba(255,255,255,0.92);
+  border-bottom-color: rgba(0,0,0,0.1);
+}
+
+/* ── Cards ── */
+body[data-theme="mono"] .stat-card,
+body[data-theme="mono"] .dash-card,
+body[data-theme="mono"] .note-card,
+body[data-theme="mono"] .goal-card,
+body[data-theme="mono"] .event-item,
+body[data-theme="mono"] .session-item,
+body[data-theme="mono"] .reminder-item {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.1);
+}
+
+body[data-theme="mono"] .stat-card:hover,
+body[data-theme="mono"] .dash-card:hover,
+body[data-theme="mono"] .note-card:hover,
+body[data-theme="mono"] .goal-card:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  border-color: rgba(0,0,0,0.25);
+}
+
+body[data-theme="mono"] .note-card::before {
+  background: #000000;
+}
+
+/* ── Stat values ── */
+body[data-theme="mono"] .stat-value {
+  color: #000000;
+}
+
+/* ── Buttons ── */
+body[data-theme="mono"] .btn-primary,
+body[data-theme="mono"] .btn-save,
+body[data-theme="mono"] .btn-start,
+body[data-theme="mono"] .auth-btn {
+  background: #000000;
+  color: #ffffff;
+}
+
+body[data-theme="mono"] .btn-primary:hover,
+body[data-theme="mono"] .btn-save:hover,
+body[data-theme="mono"] .btn-start:hover,
+body[data-theme="mono"] .auth-btn:hover {
+  background: #1a1a1a;
+}
+
+body[data-theme="mono"] .btn-start.running {
+  background: #333333;
+}
+
+body[data-theme="mono"] .btn-secondary,
+body[data-theme="mono"] .btn-reset,
+body[data-theme="mono"] .btn-cancel {
+  border-color: rgba(0,0,0,0.2);
+  color: #444444;
+}
+
+body[data-theme="mono"] .btn-secondary:hover,
+body[data-theme="mono"] .btn-reset:hover,
+body[data-theme="mono"] .btn-cancel:hover {
+  background: #f0f0f0;
+}
+
+/* ── Filter & focus tabs ── */
+body[data-theme="mono"] .filter-btn.active {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+body[data-theme="mono"] .focus-tab.active {
+  background: #000000;
+  color: #ffffff;
+}
+
+body[data-theme="mono"] .focus-tabs {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.1);
+}
+
+/* ── Timer ── */
+body[data-theme="mono"] .timer-display {
+  color: #000000;
+}
+
+body[data-theme="mono"] .ring-track {
+  stroke: #e0e0e0;
+}
+
+body[data-theme="mono"] .ring-fill {
+  stroke: #000000;
+}
+
+/* ── Progress bars ── */
+body[data-theme="mono"] .goal-progress-fill {
+  background: #000000;
+}
+
+body[data-theme="mono"] .goal-progress-bar {
+  background: #e0e0e0;
+}
+
+/* ── Calendar ── */
+body[data-theme="mono"] .cal-grid-wrap {
+  background: #ffffff;
+}
+
+body[data-theme="mono"] .cal-day.today .day-num {
+  background: #000000;
+  color: #ffffff;
+}
+
+body[data-theme="mono"] .cal-day:hover {
+  background: #f5f5f5;
+}
+
+/* ── Tags ── */
+body[data-theme="mono"] .note-tag,
+body[data-theme="mono"] .tag-idea,
+body[data-theme="mono"] .tag-recipe,
+body[data-theme="mono"] .tag-schedule,
+body[data-theme="mono"] .tag-list {
+  background: #f0f0f0;
+  color: #333333;
+}
+
+/* ── Goal categories ── */
+body[data-theme="mono"] .goal-category {
+  background: #f0f0f0 !important;
+  color: #333333 !important;
+}
+
+body[data-theme="mono"] .goal-pct {
+  color: #000000 !important;
+}
+
+/* ── Modals ── */
+body[data-theme="mono"] .modal,
+body[data-theme="mono"] .modal-sm,
+body[data-theme="mono"] .auth-card {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.15);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.15);
+}
+
+body[data-theme="mono"] .modal-foot {
+  background: #f5f5f5;
+  border-top-color: rgba(0,0,0,0.08);
+}
+
+body[data-theme="mono"] .overlay {
+  background: rgba(0,0,0,0.5);
+}
+
+/* ── Toast ── */
+body[data-theme="mono"] .toast {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ── FAB ── */
+body[data-theme="mono"] .fab {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* ── Streak widget ── */
+body[data-theme="mono"] .streak-widget {
+  background: #f5f5f5;
+  border-color: rgba(0,0,0,0.1);
+}
+
+/* ── Quote banner ── */
+body[data-theme="mono"] .quote-banner {
+  background: #f5f5f5;
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* ── Reminders sidebar ── */
+body[data-theme="mono"] .reminders-sidebar,
+body[data-theme="mono"] .rem-stat {
+  background: #f5f5f5;
+}
+
+/* ── Mobile topbar & nav ── */
+body[data-theme="mono"] .mobile-topbar,
+body[data-theme="mono"] .mobile-nav {
+  background: #ffffff;
+  border-color: rgba(0,0,0,0.12);
+}
+
+body[data-theme="mono"] .mobile-topbar-logo {
+  color: #000000;
+}
+
+body[data-theme="mono"] .mobile-topbar-icon-btn {
+  background: #f0f0f0;
+  border-color: rgba(0,0,0,0.15);
+  color: #333333;
+}
+
+body[data-theme="mono"] .mobile-nav-item.active {
+  color: #000000;
+  background: rgba(0,0,0,0.06);
+}
+
+/* ── Sparkles ── */
+body[data-theme="mono"] .sparkle.star::before,
+body[data-theme="mono"] .sparkle.cross::before,
+body[data-theme="mono"] .sparkle.diamond::before {
+  color: #000000;
+  opacity: 0.15;
+}
+
+body[data-theme="mono"] .sparkle.dot {
+  background: #000000;
+  opacity: 0.12;
+}
+
+/* ── Input color scheme ── */
+body[data-theme="mono"] input,
+body[data-theme="mono"] textarea,
+body[data-theme="mono"] select {
+  color-scheme: light;
+}
+
+
+/* ── Monochrome compact sidebar logo ── */
+body[data-theme="mono"][data-compact="true"] .logo-name {
+  background: rgba(0,0,0,0.08);
+  border-color: rgba(0,0,0,0.15);
+}
+
+body[data-theme="mono"][data-compact="true"] .logo-name::after {
+  color: #000000;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   MEADOW THEME — nature photo backdrop with frosted glass UI
+   Image file: meadow.jpg.png (place in same folder as index.html)
+══════════════════════════════════════════════════════════════════ */
+
+/* ── CSS variables ── */
+body[data-theme="meadow"] {
+  --cream:          rgba(255, 255, 255, 0.82);
+  --cream2:         rgba(255, 255, 255, 0.65);
+  --cream3:         rgba(255, 255, 255, 0.45);
+  --warm-dark:      #1a3a1a;
+  --warm-mid:       #2d5a2d;
+  --card-bg:        rgba(255, 255, 255, 0.55);
+  --text-primary:   #0f2a0f;
+  --text-secondary: #2d5a2d;
+  --text-muted:     #5a8a5a;
+  --accent:         #2e7d32;
+  --accent2:        #43a047;
+  --accent-light:   rgba(46, 125, 50, 0.15);
+  --accent-glow:    rgba(46, 125, 50, 0.2);
+  --green:          #2e7d32;
+  --green-light:    rgba(46, 125, 50, 0.12);
+  --blue:           #1565c0;
+  --blue-light:     rgba(21, 101, 192, 0.12);
+  --gold:           #f57f17;
+  --gold-light:     rgba(245, 127, 23, 0.15);
+  --border:         rgba(255, 255, 255, 0.45);
+  --border2:        rgba(255, 255, 255, 0.65);
+  --shadow:         0 4px 24px rgba(0, 0, 0, 0.12);
+  --shadow2:        0 8px 40px rgba(0, 0, 0, 0.18);
+  --radius:         16px;
+}
+
+/* ── Full-screen blurred photo background ── */
+body[data-theme="meadow"]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('meadow.jpg.png');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.92) saturate(1.1);
+  transform: scale(1.05); /* prevent blur edge bleed */
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* ── Soft white overlay to keep text readable ── */
+body[data-theme="meadow"]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.18);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ── Main area — transparent so photo shows through ── */
+body[data-theme="meadow"] .main {
+  background: transparent;
+}
+
+/* ── Sidebar — deep forest green, frosted ── */
+body[data-theme="meadow"] .sidebar {
+  background: rgba(15, 42, 15, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 4px 0 32px rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme="meadow"] .sidebar::before {
+  background: radial-gradient(circle, rgba(90, 180, 90, 0.15), transparent 70%);
+}
+
+body[data-theme="meadow"] .sidebar::after {
+  background: radial-gradient(circle, rgba(58, 181, 230, 0.1), transparent 70%);
+}
+
+body[data-theme="meadow"] .sidebar-logo {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="meadow"] .logo-name {
+  color: #e8f5e9;
+}
+
+body[data-theme="meadow"] .logo-sub {
+  color: rgba(232, 245, 233, 0.4);
+}
+
+body[data-theme="meadow"] .nav-item {
+  color: rgba(232, 245, 233, 0.55);
+}
+
+body[data-theme="meadow"] .nav-item:hover {
+  color: rgba(232, 245, 233, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body[data-theme="meadow"] .nav-item.active {
+  background: rgba(46, 125, 50, 0.3);
+  color: #e8f5e9;
+  border-color: rgba(46, 125, 50, 0.5);
+  box-shadow: 0 2px 12px rgba(46, 125, 50, 0.2);
+}
+
+body[data-theme="meadow"] .nav-item.active::before {
+  background: #66bb6a;
+}
+
+body[data-theme="meadow"] .nav-section-label {
+  color: rgba(232, 245, 233, 0.25);
+}
+
+body[data-theme="meadow"] .user-name {
+  color: rgba(232, 245, 233, 0.8);
+}
+
+body[data-theme="meadow"] .user-sub {
+  color: rgba(232, 245, 233, 0.35);
+}
+
+body[data-theme="meadow"] .btn-signout {
+  color: rgba(232, 245, 233, 0.35);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="meadow"] .btn-signout:hover {
+  color: rgba(232, 245, 233, 0.75);
+}
+
+/* ── Page header — frosted glass strip ── */
+body[data-theme="meadow"] .page-header {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+body[data-theme="meadow"] .page-title {
+  color: #0f2a0f;
+}
+
+body[data-theme="meadow"] .page-label {
+  color: #5a8a5a;
+}
+
+/* ── Cards — frosted glass ── */
+body[data-theme="meadow"] .stat-card,
+body[data-theme="meadow"] .dash-card,
+body[data-theme="meadow"] .note-card,
+body[data-theme="meadow"] .goal-card,
+body[data-theme="meadow"] .event-item,
+body[data-theme="meadow"] .session-item,
+body[data-theme="meadow"] .reminder-item,
+body[data-theme="meadow"] .reminders-sidebar {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme="meadow"] .stat-card:hover,
+body[data-theme="meadow"] .dash-card:hover,
+body[data-theme="meadow"] .note-card:hover,
+body[data-theme="meadow"] .goal-card:hover {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+/* ── Buttons ── */
+body[data-theme="meadow"] .btn-primary,
+body[data-theme="meadow"] .btn-save,
+body[data-theme="meadow"] .btn-start,
+body[data-theme="meadow"] .auth-btn {
+  background: #2e7d32;
+  color: #fff;
+}
+
+body[data-theme="meadow"] .btn-primary:hover,
+body[data-theme="meadow"] .btn-save:hover,
+body[data-theme="meadow"] .btn-start:hover,
+body[data-theme="meadow"] .auth-btn:hover {
+  background: #1b5e20;
+}
+
+body[data-theme="meadow"] .btn-start.running {
+  background: #43a047;
+}
+
+body[data-theme="meadow"] .filter-btn.active {
+  background: #2e7d32;
+  color: #fff;
+  border-color: #2e7d32;
+}
+
+body[data-theme="meadow"] .focus-tab.active {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* ── Quick buttons ── */
+body[data-theme="meadow"] .quick-btn {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #2d5a2d;
+}
+
+body[data-theme="meadow"] .quick-btn:hover {
+  background: rgba(255, 255, 255, 0.75) !important;
+  color: #0f2a0f;
+}
+
+/* ── Focus tabs ── */
+body[data-theme="meadow"] .focus-tabs {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Search bar ── */
+body[data-theme="meadow"] .search-bar {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: #0f2a0f;
+}
+
+/* ── Calendar ── */
+body[data-theme="meadow"] .cal-grid-wrap {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="meadow"] .cal-day:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+body[data-theme="meadow"] .cal-day.today .day-num {
+  background: #2e7d32;
+  color: #fff;
+}
+
+/* ── Progress bars ── */
+body[data-theme="meadow"] .goal-progress-fill {
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+}
+
+body[data-theme="meadow"] .goal-progress-bar {
+  background: rgba(46, 125, 50, 0.15);
+}
+
+body[data-theme="meadow"] .game-xp-fill {
+  background: linear-gradient(90deg, #2e7d32, #66bb6a);
+}
+
+/* ── Timer ring ── */
+body[data-theme="meadow"] .ring-fill {
+  stroke: #2e7d32;
+}
+
+body[data-theme="meadow"] .ring-track {
+  stroke: rgba(46, 125, 50, 0.2);
+}
+
+body[data-theme="meadow"] .timer-display {
+  color: #1b5e20;
+}
+
+/* ── Modals ── */
+body[data-theme="meadow"] .modal,
+body[data-theme="meadow"] .modal-sm,
+body[data-theme="meadow"] .auth-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+body[data-theme="meadow"] .modal-foot {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="meadow"] .overlay {
+  background: rgba(15, 42, 15, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* ── Toast ── */
+body[data-theme="meadow"] .toast {
+  background: rgba(15, 42, 15, 0.88);
+  color: #e8f5e9;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Rem stat ── */
+body[data-theme="meadow"] .rem-stat {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* ── Nav badge ── */
+body[data-theme="meadow"] .nav-badge {
+  background: #66bb6a;
+  color: #fff;
+}
+
+/* ── Streak widget ── */
+body[data-theme="meadow"] .streak-widget {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Mobile chrome ── */
+@media (max-width: 768px) {
+  body[data-theme="meadow"] .mobile-topbar,
+  body[data-theme="meadow"] .mobile-nav {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+
+  body[data-theme="meadow"] .mobile-topbar-logo {
+    color: #0f2a0f;
+  }
+
+  body[data-theme="meadow"] .mobile-topbar-icon-btn {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(46, 125, 50, 0.25);
+    color: #2e7d32;
+  }
+}
+
+/* ── Game / Arena cards ── */
+body[data-theme="meadow"] .game-card {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="meadow"] .game-level-badge,
+body[data-theme="meadow"] .mission-action,
+body[data-theme="meadow"] .game-friend-form button,
+body[data-theme="meadow"] .game-battle-btn {
+  background: #2e7d32;
+  color: #fff;
+}
+
+body[data-theme="meadow"] .game-level-badge {
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.35);
+}
+
+body[data-theme="meadow"] .game-xp-track {
+  background: rgba(46, 125, 50, 0.15);
+}
+
+body[data-theme="meadow"] .game-pill {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+body[data-theme="meadow"] .mission-card {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+body[data-theme="meadow"] .mission-card.complete {
+  border-color: rgba(46, 125, 50, 0.4);
+  background: rgba(46, 125, 50, 0.08);
+}
+
+body[data-theme="meadow"] .achievement-row,
+body[data-theme="meadow"] .friend-row {
+  background: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+body[data-theme="meadow"] .friend-picker {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ── Level-up popup ── */
+body[data-theme="meadow"] .level-up-pop {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  color: #e8f5e9;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════
+   TODAY'S FOCUS CARD — dark theme fixes
+   The card uses var(--warm-dark) / var(--warm-mid) as its gradient,
+   which becomes light lavender/purple in dark themes. Override to
+   always use a proper dark surface with readable text.
+══════════════════════════════════════════════════════════════════ */
+
+/* ── Midnight ── */
+body[data-theme="dark"] .today-focus-card {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(160,122,240,0.28), transparent 30%),
+    linear-gradient(135deg, #1a1628 0%, #231e38 100%);
+  border-color: rgba(160,122,240,0.22);
+}
+
+body[data-theme="dark"] .today-focus-input {
+  background: rgba(255,255,255,0.07);
+  color: #e8e4f8;
+  border-color: rgba(255,255,255,0.12);
+}
+
+body[data-theme="dark"] .today-focus-input::placeholder { color: rgba(232,228,248,0.38); }
+
+body[data-theme="dark"] .today-focus-side {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.1);
+}
+
+body[data-theme="dark"] .today-focus-time span { color: #e8e4f8; }
+body[data-theme="dark"] .today-focus-time small { color: rgba(232,228,248,0.45); }
+body[data-theme="dark"] .today-focus-kicker     { color: rgba(232,228,248,0.55); }
+body[data-theme="dark"] #today-focus-progress-label { color: #e8e4f8; }
+
+body[data-theme="dark"] .focus-action {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.13);
+  color: rgba(232,228,248,0.82);
+}
+body[data-theme="dark"] .focus-action:hover {
+  background: rgba(255,255,255,0.14);
+  color: #e8e4f8;
+}
+body[data-theme="dark"] .focus-action-primary {
+  background: #a78bfa;
+  color: #0d0d18;
+  border-color: #a78bfa;
+}
+body[data-theme="dark"] .focus-action-primary:hover {
+  background: #c4b5fd;
+}
+body[data-theme="dark"] .focus-action-primary.running {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+/* Quick action buttons */
+body[data-theme="dark"] .quick-btn {
+  background: var(--card-bg);
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+/* ── Neon Pulse ── */
+body[data-theme="neon"] .today-focus-card {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(0,245,212,0.18), transparent 30%),
+    linear-gradient(135deg, #060610 0%, #0d0d22 100%);
+  border-color: rgba(0,245,212,0.2);
+}
+
+body[data-theme="neon"] .today-focus-input {
+  background: rgba(0,245,212,0.05);
+  color: #e0f8f4;
+  border-color: rgba(0,245,212,0.15);
+}
+body[data-theme="neon"] .today-focus-input::placeholder { color: rgba(0,245,212,0.3); }
+
+body[data-theme="neon"] .today-focus-side {
+  background: rgba(0,245,212,0.05);
+  border-color: rgba(0,245,212,0.12);
+}
+
+body[data-theme="neon"] .today-focus-time span { color: #e0f8f4; }
+body[data-theme="neon"] .today-focus-time small { color: rgba(0,245,212,0.45); }
+body[data-theme="neon"] .today-focus-kicker     { color: rgba(0,245,212,0.55); }
+body[data-theme="neon"] #today-focus-progress-label { color: #00f5d4; }
+
+body[data-theme="neon"] .focus-action {
+  background: rgba(0,245,212,0.07);
+  border-color: rgba(0,245,212,0.15);
+  color: rgba(0,245,212,0.75);
+}
+body[data-theme="neon"] .focus-action:hover {
+  background: rgba(0,245,212,0.13);
+  color: #00f5d4;
+}
+body[data-theme="neon"] .focus-action-primary {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+  border-color: transparent;
+}
+body[data-theme="neon"] .focus-action-primary:hover {
+  background: linear-gradient(135deg, #00dfc0, #0070e0);
+}
+
+/* ── Ocean ── */
+body[data-theme="ocean"] .today-focus-card {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(74,111,165,0.3), transparent 30%),
+    linear-gradient(135deg, #0a1e3a 0%, #122e56 100%);
+  border-color: rgba(74,111,165,0.3);
+}
+
+body[data-theme="ocean"] .today-focus-input {
+  background: rgba(255,255,255,0.08);
+  color: #d0e4f8;
+  border-color: rgba(255,255,255,0.14);
+}
+body[data-theme="ocean"] .today-focus-input::placeholder { color: rgba(208,228,248,0.38); }
+
+body[data-theme="ocean"] .today-focus-side {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+body[data-theme="ocean"] .today-focus-time span { color: #d0e4f8; }
+body[data-theme="ocean"] .today-focus-time small { color: rgba(208,228,248,0.45); }
+body[data-theme="ocean"] .today-focus-kicker     { color: rgba(208,228,248,0.55); }
+body[data-theme="ocean"] #today-focus-progress-label { color: #d0e4f8; }
+
+body[data-theme="ocean"] .focus-action {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.14);
+  color: rgba(208,228,248,0.8);
+}
+body[data-theme="ocean"] .focus-action:hover {
+  background: rgba(255,255,255,0.14);
+  color: #d0e4f8;
+}
+body[data-theme="ocean"] .focus-action-primary {
+  background: #4a9fd8;
+  color: #fff;
+  border-color: #4a9fd8;
+}
+body[data-theme="ocean"] .focus-action-primary:hover { background: #2e86c1; }
+
+/* ── Rose ── */
+body[data-theme="rose"] .today-focus-card {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(194,113,130,0.3), transparent 30%),
+    linear-gradient(135deg, #2a0e1e 0%, #3e1830 100%);
+  border-color: rgba(194,113,130,0.28);
+}
+
+body[data-theme="rose"] .today-focus-input {
+  background: rgba(255,255,255,0.08);
+  color: #f8d8e0;
+  border-color: rgba(255,255,255,0.14);
+}
+body[data-theme="rose"] .today-focus-input::placeholder { color: rgba(248,216,224,0.38); }
+
+body[data-theme="rose"] .today-focus-side {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+body[data-theme="rose"] .today-focus-time span { color: #f8d8e0; }
+body[data-theme="rose"] .today-focus-time small { color: rgba(248,216,224,0.45); }
+body[data-theme="rose"] .today-focus-kicker     { color: rgba(248,216,224,0.55); }
+body[data-theme="rose"] #today-focus-progress-label { color: #f8d8e0; }
+
+body[data-theme="rose"] .focus-action {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.14);
+  color: rgba(248,216,224,0.8);
+}
+body[data-theme="rose"] .focus-action:hover {
+  background: rgba(255,255,255,0.14);
+  color: #f8d8e0;
+}
+body[data-theme="rose"] .focus-action-primary {
+  background: #c2607a;
+  color: #fff;
+  border-color: #c2607a;
+}
+body[data-theme="rose"] .focus-action-primary:hover { background: #a0405a; }
+
+/* ── Forest ── */
+body[data-theme="forest"] .today-focus-card {
+  background:
+    radial-gradient(circle at 82% 14%, rgba(74,128,80,0.3), transparent 30%),
+    linear-gradient(135deg, #1e2a1a 0%, #2e3e28 100%);
+  border-color: rgba(74,128,80,0.28);
+}
+
+body[data-theme="forest"] .today-focus-input {
+  background: rgba(255,255,255,0.08);
+  color: #d4f0d8;
+  border-color: rgba(255,255,255,0.14);
+}
+body[data-theme="forest"] .today-focus-input::placeholder { color: rgba(212,240,216,0.38); }
+
+body[data-theme="forest"] .today-focus-side {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+}
+
+body[data-theme="forest"] .today-focus-time span { color: #d4f0d8; }
+body[data-theme="forest"] .today-focus-time small { color: rgba(212,240,216,0.45); }
+body[data-theme="forest"] .today-focus-kicker     { color: rgba(212,240,216,0.55); }
+body[data-theme="forest"] #today-focus-progress-label { color: #d4f0d8; }
+
+body[data-theme="forest"] .focus-action {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.14);
+  color: rgba(212,240,216,0.8);
+}
+body[data-theme="forest"] .focus-action:hover {
+  background: rgba(255,255,255,0.14);
+  color: #d4f0d8;
+}
+body[data-theme="forest"] .focus-action-primary {
+  background: #5a9a5a;
+  color: #fff;
+  border-color: #5a9a5a;
+}
+body[data-theme="forest"] .focus-action-primary:hover { background: #3e7a3e; }
+
+/* ══════════════════════════════════════════════════════════════════
+   QUICK ACTION BUTTONS — dark theme fixes
+   These use var(--card-bg) background which is fine, but the text
+   color needs to be readable on dark backgrounds.
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="dark"] .quick-btn,
+body[data-theme="ocean"] .quick-btn,
+body[data-theme="rose"] .quick-btn,
+body[data-theme="forest"] .quick-btn {
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   FLOW PRIMARY BUTTON — dark theme fixes
+   .flow-primary uses var(--warm-dark) which is light in dark themes
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="dark"] .flow-primary {
+  background: #a78bfa;
+  color: #0d0d18;
+}
+body[data-theme="dark"] .flow-primary:hover { background: #c4b5fd; }
+
+body[data-theme="neon"] .flow-primary {
+  background: linear-gradient(135deg, #00f5d4, #0088ff);
+  color: #060610;
+}
+
+body[data-theme="ocean"] .flow-primary {
+  background: #1565c0;
+  color: #fff;
+}
+body[data-theme="ocean"] .flow-primary:hover { background: #0d47a1; }
+
+body[data-theme="rose"] .flow-primary {
+  background: #c2607a;
+  color: #fff;
+}
+body[data-theme="rose"] .flow-primary:hover { background: #a0405a; }
+
+body[data-theme="forest"] .flow-primary {
+  background: #3e7a3e;
+  color: #fff;
+}
+body[data-theme="forest"] .flow-primary:hover { background: #2e5a2e; }
+
+/* ══════════════════════════════════════════════════════════════════
+   MOOD & HABIT ACTIVE STATES — dark theme fixes
+   .mood-option.active and .habit-pill.done use var(--warm-dark)
+   which is light in dark themes
+══════════════════════════════════════════════════════════════════ */
+body[data-theme="dark"] .mood-option.active,
+body[data-theme="dark"] .habit-pill.done {
+  background: #a78bfa;
+  border-color: #a78bfa;
+  color: #0d0d18;
+}
+
+body[data-theme="ocean"] .mood-option.active,
+body[data-theme="ocean"] .habit-pill.done {
+  background: #1565c0;
+  border-color: #1565c0;
+  color: #fff;
+}
+
+body[data-theme="rose"] .mood-option.active,
+body[data-theme="rose"] .habit-pill.done {
+  background: #c2607a;
+  border-color: #c2607a;
+  color: #fff;
+}
+
+body[data-theme="forest"] .mood-option.active,
+body[data-theme="forest"] .habit-pill.done {
+  background: #3e7a3e;
+  border-color: #3e7a3e;
+  color: #fff;
+}
