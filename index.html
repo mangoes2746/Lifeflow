@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <title>Lifeflow — Your Inner Workspace</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="mobile.css"/>
+  <link rel="stylesheet" href="settings.css"/>
+  <link rel="stylesheet" href="theme-fixes.css"/>
+  <link rel="stylesheet" href="gamification.css"/>
+  <link rel="stylesheet" href="premium.css"/>
+  <link rel="stylesheet" href="assistant.css"/>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="premium-icons.js"></script>
+</head>
+<body data-theme="meadow">
+<!-- ── AMBIENT BACKGROUND ── -->
+<div class="ambient-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+<div class="ambient-grain"></div>
+<!-- ══════════════════════════════════════════
+     SIDEBAR
+══════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-name">Lifeflow</div>
+    <div class="logo-sub">Your Inner Workspace</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item active" onclick="switchTo('dashboard',this)" id="nav-dashboard" title="Dashboard" aria-label="Dashboard">
+      <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span>
+      <span class="nav-label">Dashboard</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('notes',this)" id="nav-notes" title="Notes" aria-label="Notes">
+      <span class="nav-icon"><i data-lucide="pencil-line"></i></span>
+      <span class="nav-label">Notes</span>
+      <span class="nav-badge" id="notes-badge">0</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('calendar',this)" id="nav-calendar" title="Calendar" aria-label="Calendar">
+      <span class="nav-icon"><i data-lucide="calendar-days"></i></span>
+      <span class="nav-label">Calendar</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('goals',this)" id="nav-goals" title="Goals" aria-label="Goals">
+      <span class="nav-icon"><i data-lucide="target"></i></span>
+      <span class="nav-label">Goals</span>
+    </div>
+    <div class="nav-section-label">Tools</div>
+    <div class="nav-item" onclick="switchTo('assistant',this)" id="nav-assistant" title="Assistant" aria-label="Assistant">
+      <span class="nav-icon"><i data-lucide="bot"></i></span>
+      <span class="nav-label">Assistant</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('focus',this)" id="nav-focus" title="Focus" aria-label="Focus">
+      <span class="nav-icon"><i data-lucide="timer"></i></span>
+      <span class="nav-label">Focus</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('reminders',this)" id="nav-reminders" title="Reminders" aria-label="Reminders">
+      <span class="nav-icon"><i data-lucide="bell"></i></span>
+      <span class="nav-label">Reminders</span>
+      <span class="nav-badge" id="rem-badge" style="display:none">0</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('chat',this)" id="nav-chat" title="Chat" aria-label="Chat">
+      <span class="nav-icon"><i data-lucide="message-circle"></i></span>
+      <span class="nav-label">Chat</span>
+      <span class="nav-badge" id="chat-badge" style="display:none">0</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('friends',this)" id="nav-friends" title="Friends" aria-label="Friends">
+      <span class="nav-icon"><i data-lucide="users"></i></span>
+      <span class="nav-label">Friends</span>
+      <span class="nav-badge" id="friends-req-badge" style="display:none">0</span>
+    </div>
+    <div class="nav-item" onclick="switchTo('game',this)" id="nav-game" title="Arena" aria-label="Arena">
+      <span class="nav-icon"><i data-lucide="gamepad-2"></i></span>
+      <span class="nav-label">Arena</span>
+    </div>
+    <div class="nav-section-label">System</div>
+    <div class="nav-item" onclick="switchTo('settings',this)" id="nav-settings" title="Settings" aria-label="Settings">
+      <span class="nav-icon"><i data-lucide="settings"></i></span>
+      <span class="nav-label">Settings</span>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info" role="button" tabindex="0" title="Account settings" aria-label="Account settings" onclick="switchTo('settings',document.getElementById('nav-settings'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}">
+      <div class="user-avatar" id="user-avatar">E</div>
+      <div>
+        <div class="user-name" id="user-name-display">Eduard</div>
+        <div class="user-sub">Free plan</div>
+      </div>
+    </div>
+    <button class="btn-signout" id="btn-signout" onclick="handleSignOut()"><i data-lucide="log-out"></i> Sign out</button>
+  </div>
+</aside>
+
+
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT AREA
+══════════════════════════════════════════ -->
+<main class="main" id="main-scroll">
+
+  <!-- ── DASHBOARD ── -->
+  <div class="panel active" id="panel-dashboard">
+    <div class="page-header">
+      <div class="page-label" id="dash-date-label">FRIDAY, MAY 1</div>
+      <div class="page-title" style="font-family:'DM Serif Display',serif;" id="dash-greeting">Good to see you, Eduard</div>
+    </div>
+    <div class="page-content">
+
+      <!-- Today's Focus -->
+      <div class="today-focus-card" id="today-focus-card">
+        <div class="focus-card-glow"></div>
+        <div class="today-focus-main">
+          <div class="today-focus-kicker"><i data-lucide="crosshair"></i> Today's Focus</div>
+          <input id="today-focus-goal" class="today-focus-input" type="text" placeholder="What is your main goal today?" maxlength="96" oninput="updateTodayFocusGoal(this.value)"/>
+          <div class="today-focus-progress-row">
+            <div class="today-focus-progress-track" aria-label="Today's focus progress">
+              <div class="today-focus-progress-fill" id="today-focus-progress-fill"></div>
+            </div>
+            <span id="today-focus-progress-label">0%</span>
+          </div>
+        </div>
+        <div class="today-focus-side">
+          <div class="today-focus-time">
+            <span id="today-focus-time">0 min</span>
+            <small>time spent focusing</small>
+          </div>
+          <div class="today-focus-actions">
+            <button class="focus-action focus-action-primary" id="today-focus-start" onclick="toggleTodayFocusTimer()"><i data-lucide="play"></i> Start Focus</button>
+            <button class="focus-action" onclick="increaseTodayFocusProgress(10)"><i data-lucide="plus"></i> +10%</button>
+            <button class="focus-action" onclick="resetTodayFocus()"><i data-lucide="rotate-ccw"></i> Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streak widget -->
+      <div class="streak-widget">
+        <div class="streak-flame"><i data-lucide="flame"></i></div>
+        <div class="streak-info">
+          <div class="streak-label">Daily Streak</div>
+          <div class="streak-count" id="streak-count">1 day</div>
+          <div class="streak-sub">Keep it going!</div>
+        </div>
+        <div class="streak-dots" id="streak-dots">
+          <div class="streak-dot active"></div>
+          <div class="streak-dot"></div>
+          <div class="streak-dot"></div>
+          <div class="streak-dot"></div>
+          <div class="streak-dot"></div>
+          <div class="streak-dot"></div>
+          <div class="streak-dot"></div>
+        </div>
+      </div>
+
+      <!-- Stats row -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Notes</div>
+          <div class="stat-value" id="stat-notes">0</div>
+          <div class="stat-sub">entries created</div>
+          <div class="stat-icon"><i data-lucide="pencil-line"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Goals</div>
+          <div class="stat-value" id="stat-goals">0</div>
+          <div class="stat-sub">in progress</div>
+          <div class="stat-icon"><i data-lucide="target"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Events</div>
+          <div class="stat-value" id="stat-events">0</div>
+          <div class="stat-sub">upcoming</div>
+          <div class="stat-icon"><i data-lucide="calendar-days"></i></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Focus Today</div>
+          <div class="stat-value" id="stat-focus">0<span class="stat-unit">min</span></div>
+          <div class="stat-sub" id="stat-focus-sessions">0 sessions</div>
+          <div class="stat-icon"><i data-lucide="timer"></i></div>
+        </div>
+      </div>
+
+      <!-- Quick actions -->
+      <div class="quick-actions">
+        <button class="quick-btn" onclick="openNoteModal()"><i data-lucide="pencil-line"></i> New note</button>
+        <button class="quick-btn" onclick="openGoalModal()"><i data-lucide="target"></i> New goal</button>
+        <button class="quick-btn" onclick="openCalModal(null)"><i data-lucide="calendar-plus"></i> Add event</button>
+        <button class="quick-btn" onclick="openReminderModal()"><i data-lucide="bell-plus"></i> Set reminder</button>
+        <button class="quick-btn" onclick="openAssistant()"><i data-lucide="bot"></i> Ask AI</button>
+        <button class="quick-btn" onclick="switchTo('focus',document.getElementById('nav-focus'))"><i data-lucide="timer"></i> Start focus</button>
+        <button class="quick-btn" onclick="openCommandPalette()"><i data-lucide="command"></i> Command</button>
+      </div>
+
+      <!-- Dashboard search -->
+      <div class="dash-search-card">
+        <div class="dash-search-wrap">
+          <i data-lucide="search"></i>
+          <input id="global-search" type="text" placeholder="Search notes, goals, reminders, and events..." oninput="renderGlobalSearch(this.value)"/>
+        </div>
+        <div class="global-search-results" id="global-search-results"></div>
+      </div>
+
+      <!-- Daily wellbeing -->
+      <div class="wellbeing-grid">
+        <div class="dash-card mood-card">
+          <div class="dash-card-title">
+            MOOD CHECK-IN
+            <span id="mood-today-label">Today</span>
+          </div>
+          <div class="mood-question">How are you feeling today?</div>
+          <div class="mood-options" id="mood-options"></div>
+          <div class="mood-history" id="mood-history"></div>
+        </div>
+        <div class="dash-card habit-card">
+          <div class="dash-card-title">
+            MINI HABITS
+            <span id="habit-progress-label">0/5</span>
+          </div>
+          <div class="habit-grid" id="habit-grid"></div>
+        </div>
+      </div>
+
+      <!-- Today's Flow -->
+      <div class="daily-flow" id="daily-flow">
+        <div class="flow-hero">
+          <div class="dash-card-title">
+            AI DAILY PLAN
+            <span id="flow-score-label">Ready</span>
+          </div>
+          <div class="flow-focus-title" id="flow-focus-title">Build a plan for today</div>
+          <div class="flow-focus-meta" id="flow-focus-meta">Your events, reminders, goals, and focus rhythm will meet here.</div>
+          <div class="flow-actions">
+            <button class="flow-primary" onclick="startFlowFocus()"><i data-lucide="play"></i> Start focus</button>
+            <button class="flow-secondary" onclick="rebuildDailyPlan()"><i data-lucide="sparkles"></i> Generate Today's Plan</button>
+          </div>
+        </div>
+        <div class="flow-plan-list" id="flow-plan-list"></div>
+      </div>
+
+      <!-- Daily checklist + achievements -->
+      <div class="dash-grid">
+        <div class="dash-card checklist-card">
+          <div class="dash-card-title">
+            DAILY CHECKLIST
+            <span id="checklist-progress-label">0/3 done</span>
+          </div>
+          <div id="daily-checklist"></div>
+          <button class="micro-action" onclick="resetDailyChecklistFromPlan()"><i data-lucide="refresh-cw"></i> Use plan tasks</button>
+        </div>
+        <div class="dash-card achievements-card">
+          <div class="dash-card-title">
+            ACHIEVEMENTS
+            <span id="achievement-count-label">0 unlocked</span>
+          </div>
+          <div class="achievement-grid" id="achievement-grid"></div>
+        </div>
+      </div>
+
+      <!-- Charts + Upcoming -->
+      <div class="dash-grid">
+        <div class="dash-card">
+          <div class="dash-card-title">
+            FOCUS THIS WEEK
+            <span id="sessions-count-label" style="color:var(--text-muted);font-size:11px;letter-spacing:0;text-transform:none;font-weight:400;">0 sessions</span>
+          </div>
+          <div style="font-family:'DM Serif Display',serif;font-size:28px;color:var(--text-primary);margin-bottom:14px;" id="weekly-focus-total">0 min</div>
+          <div class="mini-chart" id="mini-chart"></div>
+          <div style="display:flex;justify-content:space-between;margin-top:8px;" id="mini-chart-labels"></div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-card-title">
+            UPCOMING
+            <span class="dash-card-link" onclick="switchTo('reminders',document.getElementById('nav-reminders'))">View all ›</span>
+          </div>
+          <div id="dash-upcoming"></div>
+        </div>
+      </div>
+
+      <div class="dash-card progress-card">
+        <div class="dash-card-title">
+          PROGRESS GRAPHS
+          <span>Last 7 days</span>
+        </div>
+        <div class="progress-graphs" id="progress-graphs"></div>
+      </div>
+
+      <!-- Goals overview -->
+      <div class="dash-card" style="margin-bottom:20px;">
+        <div class="dash-card-title">
+          GOALS OVERVIEW
+          <span class="dash-card-link" onclick="switchTo('goals',document.getElementById('nav-goals'))">View all ›</span>
+        </div>
+        <div id="dash-goals-preview" style="display:flex;flex-direction:column;gap:12px;"></div>
+      </div>
+
+    </div>
+  </div><!-- /panel-dashboard -->
+
+
+  <!-- ── ASSISTANT ── -->
+  <div class="panel" id="panel-assistant">
+    <div class="page-header">
+      <div class="page-label">LIFEFLOW AI</div>
+      <div class="page-title">Assistant</div>
+      <div class="page-actions">
+        <button class="btn-primary" onclick="askAssistantPreset('plan')"><i data-lucide="sparkles"></i> Plan today</button>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="assistant-layout">
+        <section class="assistant-chat-card">
+          <div class="assistant-card-head">
+            <div class="assistant-id">
+              <span class="assistant-orb"><i data-lucide="bot"></i></span>
+              <span>
+                <span class="assistant-title">Lifeflow AI</span>
+                <span class="assistant-mode" id="ai-mode-label">Local</span>
+              </span>
+            </div>
+            <button class="assistant-clear" onclick="clearAssistantChat()"><i data-lucide="refresh-cw"></i> Reset</button>
+          </div>
+
+          <div class="assistant-thread" id="ai-thread" aria-live="polite"></div>
+
+          <div class="assistant-prompts">
+            <button onclick="askAssistantPreset('focus')"><i data-lucide="target"></i> Best focus</button>
+            <button onclick="askAssistantPreset('summary')"><i data-lucide="bar-chart-2"></i> Summary</button>
+            <button onclick="askAssistantPreset('goals')"><i data-lucide="flag"></i> Goals</button>
+            <button onclick="askAssistantPreset('reminders')"><i data-lucide="bell"></i> Reminders</button>
+          </div>
+
+          <form class="assistant-composer" onsubmit="sendAssistantMessage(event)">
+            <textarea id="ai-input" rows="1" placeholder="Ask about your day, goals, reminders, or focus..." oninput="resizeAssistantInput(this)"></textarea>
+            <button type="submit" aria-label="Send message"><i data-lucide="send"></i></button>
+          </form>
+        </section>
+
+        <aside class="assistant-context-card">
+          <div class="assistant-context-title">Workspace</div>
+          <div class="assistant-context-grid" id="ai-context-grid"></div>
+          <div class="assistant-priority">
+            <div class="assistant-context-title">Next moves</div>
+            <div id="ai-priority-list"></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div><!-- /panel-assistant -->
+
+
+  <!-- ── ARENA ── -->
+  <div class="panel" id="panel-game">
+    <div class="page-header">
+      <div class="page-label">XP · MISSIONS · LEADERBOARD</div>
+      <div class="page-title" style="font-family:'DM Serif Display',serif;">Arena</div>
+    </div>
+    <div class="page-content">
+      <div id="lifeflow-game-root" class="game-shell"></div>
+    </div>
+  </div><!-- /panel-game -->
+
+
+  <!-- ── NOTES ── -->
+  <div class="panel" id="panel-notes">
+    <div class="page-header">
+      <div class="page-label">YOUR JOTTED THOUGHTS</div>
+      <div class="page-title" id="notes-panel-title">Notes</div>
+      <div class="page-actions">
+        <button class="btn-primary" onclick="openNoteModal()"><i data-lucide="pencil-line"></i> New note</button>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterNotes('all',this)"><i data-lucide="sparkles"></i> All</button>
+        <button class="filter-btn" onclick="filterNotes('idea',this)"><i data-lucide="lightbulb"></i> Idea</button>
+        <button class="filter-btn" onclick="filterNotes('recipe',this)"><i data-lucide="utensils"></i> Recipe</button>
+        <button class="filter-btn" onclick="filterNotes('schedule',this)"><i data-lucide="calendar"></i> Schedule</button>
+        <button class="filter-btn" onclick="filterNotes('list',this)"><i data-lucide="list-checks"></i> List</button>
+        <div class="search-wrap">
+          <span class="search-icon"><i data-lucide="search"></i></span>
+          <input type="text" class="search-bar" placeholder="Search..." oninput="searchNotes(this.value)" id="note-search"/>
+        </div>
+      </div>
+      <div class="notes-grid" id="notes-grid"></div>
+      <div class="empty-state" id="empty-notes" style="display:none;">
+        <div class="empty-icon"><i data-lucide="pencil-line"></i></div>
+        <div class="empty-text">Nothing here yet. Start with a thought.</div>
+      </div>
+    </div>
+  </div><!-- /panel-notes -->
+
+
+  <!-- ── CALENDAR ── -->
+  <div class="panel" id="panel-calendar">
+    <div class="page-header">
+      <div class="page-label">YOUR RHYTHM</div>
+      <div class="page-title">Calendar</div>
+      <div class="page-actions">
+        <button class="btn-primary" onclick="openCalModal(null)"><i data-lucide="calendar-plus"></i> Add event</button>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="cal-top">
+        <button class="cal-nav-btn" onclick="changeMonth(-1)" aria-label="Previous month"><i data-lucide="chevron-left"></i></button>
+        <button class="cal-nav-btn" onclick="changeMonth(1)" aria-label="Next month"><i data-lucide="chevron-right"></i></button>
+        <span class="cal-month-title" id="cal-month-label">May 2026</span>
+        <button class="cal-today-btn" onclick="goToday()"><i data-lucide="calendar-check"></i> Today</button>
+      </div>
+      <div class="cal-grid-wrap">
+        <div class="cal-head-row" id="cal-head"></div>
+        <div class="cal-body" id="cal-body"></div>
+      </div>
+      <div class="event-list-section">
+        <div class="event-list-title">Upcoming events</div>
+        <div id="event-list"></div>
+      </div>
+    </div>
+  </div><!-- /panel-calendar -->
+
+
+  <!-- ── GOALS ── -->
+  <div class="panel" id="panel-goals">
+    <div class="page-header">
+      <div class="page-label">YOUR AMBITIONS</div>
+      <div class="page-title">Goals</div>
+      <div class="page-actions">
+        <button class="btn-primary" onclick="openGoalModal()"><i data-lucide="target"></i> New goal</button>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="goals-grid" id="goals-grid"></div>
+      <div class="empty-state" id="empty-goals" style="display:none;">
+        <div class="empty-icon"><i data-lucide="target"></i></div>
+        <div class="empty-text">No goals yet. Dream big, start small.</div>
+      </div>
+    </div>
+  </div><!-- /panel-goals -->
+
+
+  <!-- ── FOCUS ── -->
+  <div class="panel" id="panel-focus">
+    <div class="page-header">
+      <div class="page-label">DEEP WORK, WITHOUT THE NOISE</div>
+      <div class="page-title">Focus</div>
+    </div>
+    <div class="focus-shell">
+      <div class="focus-center">
+
+        <!-- Mode tabs -->
+        <div class="focus-tabs">
+          <button class="focus-tab active" onclick="setMode('focus',this)" id="tab-focus"><i data-lucide="zap"></i> Focus</button>
+          <button class="focus-tab" onclick="setMode('short',this)" id="tab-short"><i data-lucide="coffee"></i> Short break</button>
+          <button class="focus-tab" onclick="setMode('long',this)" id="tab-long"><i data-lucide="moon"></i> Long break</button>
+        </div>
+
+        <!-- Circular progress ring + timer -->
+        <div class="progress-ring-wrap">
+          <svg class="progress-ring" viewBox="0 0 260 260">
+            <circle class="ring-track" cx="130" cy="130" r="126"/>
+            <circle class="ring-fill"  cx="130" cy="130" r="126" id="ring-fill"/>
+          </svg>
+          <div class="ring-center">
+            <div class="timer-display" id="timer-display">25:00</div>
+          </div>
+        </div>
+
+        <!-- Task input -->
+        <input type="text" class="timer-task-input" id="timer-task" placeholder="What are you working on?"/>
+
+        <!-- Controls -->
+        <div class="timer-btns">
+          <button class="btn-start" id="btn-start" onclick="toggleTimer()"><i data-lucide="play"></i> Start</button>
+          <button class="btn-reset" onclick="resetTimer()"><i data-lucide="rotate-ccw"></i> Reset</button>
+        </div>
+
+        <!-- Duration slider -->
+        <div class="focus-duration-row">
+          <span>Duration</span>
+          <input type="range" class="duration-slider" id="duration-slider" min="5" max="90" value="25" oninput="setDuration(this.value)" step="5"/>
+          <span id="duration-label">25 minutes</span>
+        </div>
+
+        <!-- Today's sessions log -->
+        <div class="focus-sessions-today" id="sessions-section">
+          <div class="sessions-title">Today's sessions</div>
+          <div id="sessions-list"></div>
+          <div class="empty-state" id="empty-sessions" style="padding:30px 0;">
+            <div class="empty-text" style="font-size:13px;color:var(--text-muted);">No sessions yet. Start focusing!</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /panel-focus -->
+
+
+  <!-- ── REMINDERS ── -->
+  <div class="panel" id="panel-reminders">
+    <div class="page-header">
+      <div class="page-label">STAY ON TRACK</div>
+      <div class="page-title">Reminders</div>
+      <div class="page-actions">
+        <button class="btn-primary" onclick="openReminderModal()"><i data-lucide="bell-plus"></i> New reminder</button>
+      </div>
+    </div>
+    <div class="page-content">
+      <div class="reminders-layout">
+
+        <!-- List -->
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);font-weight:600;margin-bottom:12px;">ALL REMINDERS</div>
+          <div id="reminders-list"></div>
+          <div class="empty-state" id="empty-reminders" style="display:none;">
+            <div class="empty-icon"><i data-lucide="bell"></i></div>
+            <div class="empty-text">No upcoming reminders.</div>
+          </div>
+        </div>
+
+        <!-- Sidebar stats -->
+        <div>
+          <div class="reminders-sidebar">
+            <div class="rem-sidebar-title">OVERVIEW</div>
+            <div class="rem-stat-row">
+              <div class="rem-stat">
+                <div class="rem-stat-num" id="rem-total">0</div>
+                <div class="rem-stat-label">Total</div>
+              </div>
+              <div class="rem-stat">
+                <div class="rem-stat-num" id="rem-done-count">0</div>
+                <div class="rem-stat-label">Done</div>
+              </div>
+              <div class="rem-stat">
+                <div class="rem-stat-num" id="rem-pending">0</div>
+                <div class="rem-stat-label">Pending</div>
+              </div>
+            </div>
+            <div class="today-section-title">DUE TODAY</div>
+            <div id="rem-today-list">
+              <div style="font-size:12px;color:var(--text-muted);">Nothing due today.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /panel-reminders -->
+
+  <!-- ── FRIENDS ── -->
+  <div class="panel" id="panel-friends">
+    <div class="page-header">
+      <div class="page-label">SOCIAL · CONNECTIONS</div>
+      <div class="page-title">Friends</div>
+    </div>
+    <div class="page-content">
+      <div class="friends-layout">
+
+        <!-- Left: Add + Requests -->
+        <div class="friends-sidebar">
+
+          <!-- Your tag -->
+          <div class="friends-card" id="friends-tag-card" style="display:none">
+            <div class="friends-card-title">Your Tag</div>
+            <div class="friends-tag-display">
+              <span class="friends-tag-value" id="friends-tag-value"></span>
+              <button class="friends-tag-copy-btn" onclick="copyGameTag()" title="Copy tag">
+                <i data-lucide="copy"></i> Copy
+              </button>
+            </div>
+            <div class="friends-tag-hint">Share your tag so others can add you</div>
+          </div>
+
+          <!-- Add friend -->
+          <div class="friends-card">
+            <div class="friends-card-title">Add Friend</div>
+            <div class="friends-add-row">
+              <input id="friends-tag-input" class="friends-input" type="text"
+                placeholder="Tag (e.g. Mango#1234)" maxlength="64" autocomplete="off"
+                onkeydown="if(event.key==='Enter'){sendFriendRequestFromFriendsPanel()}" />
+              <button class="btn-primary" onclick="sendFriendRequestFromFriendsPanel()">
+                <i data-lucide="user-plus"></i> Send
+              </button>
+            </div>
+            <div class="friends-status" id="friends-add-status"></div>
+          </div>
+
+          <!-- Incoming requests -->
+          <div class="friends-card">
+            <div class="friends-card-title">
+              Incoming Requests
+              <span class="friends-badge" id="friends-incoming-badge" style="display:none">0</span>
+            </div>
+            <div id="friends-incoming-list" class="friends-list"></div>
+          </div>
+
+          <!-- Sent requests -->
+          <div class="friends-card">
+            <div class="friends-card-title">Sent Requests</div>
+            <div id="friends-outgoing-list" class="friends-list"></div>
+          </div>
+
+        </div>
+
+        <!-- Right: Friends list -->
+        <div class="friends-main">
+          <div class="friends-card friends-card-full">
+            <div class="friends-card-title">
+              My Friends
+              <span class="friends-count" id="friends-count">0</span>
+            </div>
+            <div id="friends-main-list" class="friends-grid"></div>
+            <div class="friends-empty" id="friends-empty">
+              <i data-lucide="users"></i>
+              <span>No friends yet. Add someone by their tag.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div><!-- /panel-friends -->
+
+  <!-- ── PRIVATE CHAT ── -->
+  <div class="panel" id="panel-chat">
+    <div class="page-header">
+      <div class="page-label">DIRECT MESSAGES</div>
+      <div class="page-title">Chat</div>
+    </div>
+    <div class="page-content">
+      <div class="chat-layout">
+        <aside class="chat-sidebar">
+          <div class="chat-card">
+            <div class="chat-card-title">Friends</div>
+            <div id="friends-list" class="chat-list"></div>
+          </div>
+          <!-- Keep these hidden for JS compatibility -->
+          <div id="incoming-requests-list" style="display:none"></div>
+          <div id="outgoing-requests-list" style="display:none"></div>
+          <div id="chat-add-status" style="display:none"></div>
+          <div id="chat-tag-row" style="display:none">
+            <span id="chat-tag-value"></span>
+          </div>
+        </aside>
+
+        <section class="chat-thread-card">
+          <div class="chat-thread-head" id="chat-thread-head">Select a friend to start chatting</div>
+          <div id="chat-thread" class="chat-thread"></div>
+          <form class="chat-composer" onsubmit="sendPrivateMessage(event)">
+            <textarea id="chat-message-input" rows="1" placeholder="Write a private message..." oninput="resizeAssistantInput(this)"></textarea>
+            <button type="submit" aria-label="Send private message"><i data-lucide="send"></i></button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div><!-- /panel-chat -->
+
+<div class="panel" id="panel-settings">
+  <div class="page-header">
+    <div class="page-label">PREFERENCES</div>
+    <div class="page-title">Settings</div>
+  </div>
+  <div class="page-content">
+
+    <!-- ── APPEARANCE ── -->
+    <div class="settings-section">
+      <div class="settings-section-title">Appearance</div>
+
+      <div class="theme-grid" id="theme-grid">
+
+        <!-- Warm Light (default) -->
+        <button class="theme-card" data-theme="default" onclick="applyTheme('default',this)">
+          <div class="theme-preview tp-default">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Warm Light</div>
+          <div class="theme-desc">Original cream & oak</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Dark Mode -->
+        <button class="theme-card" data-theme="dark" onclick="applyTheme('dark',this)">
+          <div class="theme-preview tp-dark">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Midnight</div>
+          <div class="theme-desc">Deep dark, easy on eyes</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Neon -->
+        <button class="theme-card" data-theme="neon" onclick="applyTheme('neon',this)">
+          <div class="theme-preview tp-neon">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card tp-neon-glow"></div>
+              <div class="tp-card tp-card-sm tp-neon-glow2"></div>
+            </div>
+          </div>
+          <div class="theme-name">Neon Pulse</div>
+          <div class="theme-desc">Cyberpunk glow & animation</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Forest -->
+        <button class="theme-card" data-theme="forest" onclick="applyTheme('forest',this)">
+          <div class="theme-preview tp-forest">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Forest</div>
+          <div class="theme-desc">Muted greens & earth tones</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Ocean -->
+        <button class="theme-card" data-theme="ocean" onclick="applyTheme('ocean',this)">
+          <div class="theme-preview tp-ocean">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Ocean</div>
+          <div class="theme-desc">Cool blues & deep navy</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Rose -->
+        <button class="theme-card" data-theme="rose" onclick="applyTheme('rose',this)">
+          <div class="theme-preview tp-rose">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Rose</div>
+          <div class="theme-desc">Soft pink & dusty mauve</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Monochrome -->
+        <button class="theme-card" data-theme="mono" onclick="applyTheme('mono',this)">
+          <div class="theme-preview tp-mono">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Monochrome</div>
+          <div class="theme-desc">Pure black & white</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+        <!-- Meadow -->
+        <button class="theme-card active" data-theme="meadow" onclick="applyTheme('meadow',this)">
+          <div class="theme-preview tp-meadow">
+            <div class="tp-sidebar"></div>
+            <div class="tp-main">
+              <div class="tp-bar"></div>
+              <div class="tp-card"></div>
+              <div class="tp-card tp-card-sm"></div>
+            </div>
+          </div>
+          <div class="theme-name">Meadow</div>
+          <div class="theme-desc">Nature photo backdrop</div>
+          <div class="theme-check">✓</div>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ── FONT SIZE ── -->
+    <div class="settings-section">
+      <div class="settings-section-title">Text Size</div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Interface font size</div>
+          <div class="settings-row-sub">Adjusts the size of text across the app</div>
+        </div>
+        <div class="font-size-btns" id="font-size-btns">
+          <button class="fsize-btn" data-size="small"  onclick="applyFontSize('small',this)">A<span>Small</span></button>
+          <button class="fsize-btn active" data-size="medium" onclick="applyFontSize('medium',this)">A<span>Medium</span></button>
+          <button class="fsize-btn" data-size="large"  onclick="applyFontSize('large',this)">A<span>Large</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SIDEBAR ── -->
+    <div class="settings-section">
+      <div class="settings-section-title">Sidebar</div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Compact sidebar</div>
+          <div class="settings-row-sub">Show icons only, hide labels</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-compact" onchange="toggleCompactSidebar(this.checked)"/>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ── NOTIFICATIONS ── -->
+    <div class="settings-section">
+      <div class="settings-section-title">Notifications</div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Toast notifications</div>
+          <div class="settings-row-sub">Show pop-up messages after actions</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-toasts" checked onchange="toggleToasts(this.checked)"/>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Focus timer sound</div>
+          <div class="settings-row-sub">Play a chime when the session ends</div>
+        </div>
+        <label class="toggle-switch">
+          <input type="checkbox" id="toggle-sound" checked onchange="toggleTimerSound(this.checked)"/>
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+        </label>
+      </div>
+    </div>
+
+    <!-- ── DATA ── -->
+    <div class="settings-section">
+      <div class="settings-section-title">Data</div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Export all data</div>
+          <div class="settings-row-sub">Download a JSON backup of your workspace and daily flow</div>
+        </div>
+        <button class="settings-btn" onclick="exportData()"><i data-lucide="download"></i> Export JSON</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Import backup</div>
+          <div class="settings-row-sub">Restore notes, events, goals, reminders, sessions, and daily flow</div>
+        </div>
+        <button class="settings-btn" onclick="document.getElementById('import-data-file').click()"><i data-lucide="upload"></i> Import JSON</button>
+        <input type="file" id="import-data-file" accept="application/json,.json" style="display:none" onchange="importData(event)"/>
+      </div>
+      <div class="settings-row settings-row-danger">
+        <div class="settings-row-info">
+          <div class="settings-row-label">Clear all data</div>
+          <div class="settings-row-sub">Permanently delete everything stored locally</div>
+        </div>
+        <button class="settings-btn settings-btn-danger" onclick="confirmClearData()"><i data-lucide="trash-2"></i> Clear data</button>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="settings-section settings-about">
+      <div class="settings-about-logo">Lifeflow</div>
+      <div class="settings-about-sub">Your Inner Workspace</div>
+      <div class="settings-about-version">v1.2.0 - Mobile polish & data restore</div>
+    </div>
+
+  </div>
+</div><!-- /panel-settings -->
+</main><!-- /main -->
+
+
+<!-- ══════════════════════════════════════════
+     MODALS
+══════════════════════════════════════════ -->
+
+<!-- Note modal -->
+<div class="overlay" id="overlay-note">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-title" id="note-modal-title">New note</div>
+      <select id="note-type">
+        <option value="idea">💡 Idea</option>
+        <option value="recipe">🍴 Recipe</option>
+        <option value="schedule">📅 Schedule</option>
+        <option value="list">✓ List</option>
+      </select>
+      <input type="text" class="modal-title-input" id="note-title" placeholder="Title..."/>
+    </div>
+    <div class="modal-body">
+      <textarea class="modal-textarea" id="note-body" placeholder="Start writing..."></textarea>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeNoteModal()"><i data-lucide="x"></i> Cancel</button>
+      <button class="btn-save" onclick="saveNote()"><i data-lucide="save"></i> Save note</button>
+    </div>
+  </div>
+</div>
+
+<!-- Calendar event modal -->
+<div class="overlay" id="overlay-cal">
+  <div class="modal-sm">
+    <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--text-primary);margin-bottom:18px;" id="cal-modal-title">Add event</div>
+    <input type="text"  id="cal-name" placeholder="Event name..."  style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:10px;"/>
+    <input type="date"  id="cal-date"                              style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:10px;"/>
+    <input type="time"  id="cal-time"                              style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:12px;"/>
+    <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;font-weight:500;">Color</div>
+    <div class="color-row" id="cal-colors"></div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">
+      <button class="btn-cancel" onclick="closeCalModal()"><i data-lucide="x"></i> Cancel</button>
+      <button class="btn-save"   onclick="saveCalEvent()"><i data-lucide="save"></i> Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Goal modal -->
+<div class="overlay" id="overlay-goal">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-head-title" id="goal-modal-title">New goal</div>
+      <select id="goal-category">
+        <option value="health">🏃 Health &amp; Fitness</option>
+        <option value="learning">📚 Learning</option>
+        <option value="career">💼 Career</option>
+        <option value="personal">✨ Personal</option>
+        <option value="finance">💰 Finance</option>
+        <option value="creative">🎨 Creative</option>
+      </select>
+      <input type="text" class="modal-title-input" id="goal-title" placeholder="Goal title..."/>
+    </div>
+    <div class="modal-body">
+      <textarea class="modal-textarea" id="goal-desc" placeholder="Describe your goal..." style="min-height:100px;margin-bottom:16px;"></textarea>
+      <div style="margin-bottom:16px;">
+        <label style="font-size:12px;color:var(--text-muted);font-weight:500;display:block;margin-bottom:6px;">Deadline</label>
+        <input type="date" id="goal-deadline" style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;"/>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <label style="font-size:12px;color:var(--text-muted);font-weight:500;">Progress</label>
+          <span id="goal-pct-label" style="font-size:13px;font-weight:600;color:var(--accent);">0%</span>
+        </div>
+        <input type="range" id="goal-progress" class="range-input" min="0" max="100" value="0"
+               oninput="document.getElementById('goal-pct-label').textContent=this.value+'%'"/>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-cancel" onclick="closeGoalModal()"><i data-lucide="x"></i> Cancel</button>
+      <button class="btn-save"   onclick="saveGoal()"><i data-lucide="save"></i> Save goal</button>
+    </div>
+  </div>
+</div>
+
+<!-- Reminder modal -->
+<div class="overlay" id="overlay-reminder">
+  <div class="modal-sm">
+    <div style="font-family:'DM Serif Display',serif;font-size:20px;color:var(--text-primary);margin-bottom:18px;" id="rem-modal-title">New reminder</div>
+    <input type="text"  id="rem-title"    placeholder="Reminder title..." style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:10px;"/>
+    <input type="date"  id="rem-date"                                      style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:10px;"/>
+    <input type="time"  id="rem-time"                                      style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;margin-bottom:12px;"/>
+    <div style="margin-bottom:12px;">
+      <label style="font-size:11px;color:var(--text-muted);font-weight:500;margin-bottom:6px;display:block;">Priority</label>
+      <select id="rem-priority" style="width:100%;font-family:'DM Sans',sans-serif;font-size:13.5px;color:var(--text-primary);background:var(--cream);border:1px solid var(--border2);border-radius:10px;padding:11px 14px;outline:none;">
+        <option value="low">🟢 Low</option>
+        <option value="medium" selected>🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px;border-top:1px solid var(--border);padding-top:16px;">
+      <button class="btn-cancel" onclick="closeRemModal()"><i data-lucide="x"></i> Cancel</button>
+      <button class="btn-save"   onclick="saveReminder()"><i data-lucide="save"></i> Save</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     TOAST NOTIFICATION
+══════════════════════════════════════════ -->
+<div class="toast" id="toast"></div>
+
+<div class="command-palette" id="command-palette" aria-hidden="true">
+  <div class="command-card" role="dialog" aria-modal="true" aria-label="Command palette">
+    <div class="command-search">
+      <i data-lucide="search"></i>
+      <input type="text" id="command-input" placeholder="Search or run a command..." autocomplete="off"/>
+    </div>
+    <div class="command-results" id="command-results"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     AUTH OVERLAY
+══════════════════════════════════════════ -->
+<div class="overlay open" id="overlay-auth">
+  <div class="auth-card">
+
+    <div class="auth-logo">
+      <div class="auth-logo-name">Lifeflow</div>
+      <div class="auth-logo-sub">Your Inner Workspace</div>
+    </div>
+
+    <!-- Sign-in form -->
+    <form id="form-signin" onsubmit="handleSignIn(event)">
+      <h2 class="auth-heading">Welcome back</h2>
+      <p class="auth-subheading">Sign in to continue to your workspace.</p>
+
+      <label class="auth-label" for="signin-email">Email</label>
+      <input class="auth-input" type="email" id="signin-email" placeholder="you@example.com" autocomplete="email"/>
+
+      <label class="auth-label" for="signin-password">Password</label>
+      <input class="auth-input" type="password" id="signin-password" placeholder="••••••••" autocomplete="current-password"/>
+
+      <button class="auth-btn" type="submit"><i data-lucide="log-in"></i> Sign in</button>
+    </form>
+
+    <!-- Sign-up form (hidden by default) -->
+    <form id="form-signup" style="display:none;" onsubmit="handleSignUp(event)">
+      <h2 class="auth-heading">Create account</h2>
+      <p class="auth-subheading">Start your personal productivity workspace.</p>
+
+      <label class="auth-label" for="signup-name">Display name</label>
+      <input class="auth-input" type="text" id="signup-name" placeholder="Your name" autocomplete="name"/>
+
+      <label class="auth-label" for="signup-email">Email</label>
+      <input class="auth-input" type="email" id="signup-email" placeholder="you@example.com" autocomplete="email"/>
+
+      <label class="auth-label" for="signup-password">Password</label>
+      <input class="auth-input" type="password" id="signup-password" placeholder="At least 6 characters" autocomplete="new-password"/>
+
+      <button class="auth-btn" type="submit"><i data-lucide="user-plus"></i> Create account</button>
+    </form>
+
+    <!-- Error message -->
+    <div class="auth-error" id="auth-error" style="display:none;"></div>
+
+    <div class="auth-separator"><span>or</span></div>
+
+    <!-- Google Sign-In -->
+    <button class="auth-google-btn" type="button" onclick="handleGoogleSignIn()">
+      <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+      </svg>
+      Continue with Google
+    </button>
+
+    <button class="auth-local-btn" type="button" onclick="useLocalMode()"><i data-lucide="hard-drive"></i> Continue locally</button>
+
+    <!-- Toggle link -->
+    <p class="auth-toggle">
+      <span id="auth-toggle-link" onclick="toggleAuthForm()">Don't have an account? <span class="auth-toggle-action">Sign up</span></span>
+    </p>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     FLOATING ACTION BUTTON
+══════════════════════════════════════════ -->
+<div class="fab-menu" id="fab-menu">
+  <div class="fab-item" onclick="openNoteModal();closeFab()">
+    <div class="fab-item-label">New Note</div>
+    <div class="fab-item-btn"><i data-lucide="pencil-line"></i></div>
+  </div>
+  <div class="fab-item" onclick="openGoalModal();closeFab()">
+    <div class="fab-item-label">New Goal</div>
+    <div class="fab-item-btn"><i data-lucide="target"></i></div>
+  </div>
+  <div class="fab-item" onclick="openCalModal(null);closeFab()">
+    <div class="fab-item-label">Add Event</div>
+    <div class="fab-item-btn"><i data-lucide="calendar-plus"></i></div>
+  </div>
+  <div class="fab-item" onclick="openReminderModal();closeFab()">
+    <div class="fab-item-label">Set Reminder</div>
+    <div class="fab-item-btn"><i data-lucide="bell-plus"></i></div>
+  </div>
+</div>
+<button class="fab" id="fab-btn" onclick="toggleFab()" title="Quick add"><i data-lucide="plus"></i></button>
+
+<!-- ══════════════════════════════════════════
+     FIREBASE SDK  (compat layer — exposes global `firebase`)
+══════════════════════════════════════════ -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<!-- Firebase initializer — sets window._firebaseAuth and window._firebaseDb -->
+<script src="firebase-init.js"></script>
+
+<!-- ══════════════════════════════════════════
+     APP SCRIPT  (loaded last so DOM is ready)
+══════════════════════════════════════════ -->
+<script src="app.js"></script>
+<script src="ai-assistant.js"></script>
+<script src="mobile-init.js"></script>
+<script src="settings.js"></script>
+<script src="gamification.js"></script>
+<script>
+  lucide.createIcons({
+    attrs: {
+      'stroke-width': '1.75',
+      'width': '16',
+      'height': '16'
+    }
+  });
+</script>
+
+<script>
+/* ── Sparkles ── */
+(function () {
+  var VARIANTS = ['star', 'dot', 'dot', 'cross', 'diamond'];
+  var COUNT    = 22;
+
+  var container = document.createElement('div');
+  container.className = 'sparkle-container';
+  document.body.appendChild(container);
+
+  for (var i = 0; i < COUNT; i++) {
+    var el = document.createElement('div');
+    var variant = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
+    el.className = 'sparkle ' + variant;
+
+    var size    = (Math.random() * 8 + 4).toFixed(1) + 'px';
+    var left    = (Math.random() * 100).toFixed(1) + '%';
+    var top     = (Math.random() * 100).toFixed(1) + '%';
+    var dur     = (Math.random() * 8 + 5).toFixed(1) + 's';
+    var delay   = (Math.random() * 10).toFixed(1) + 's';
+    var rise    = '-' + (Math.random() * 160 + 60).toFixed(0) + 'px';
+    var rise2   = '-' + (Math.random() * 280 + 120).toFixed(0) + 'px';
+    var drift   = ((Math.random() - 0.5) * 80).toFixed(0) + 'px';
+    var drift2  = ((Math.random() - 0.5) * 60).toFixed(0) + 'px';
+
+    el.style.cssText = [
+      '--size:'   + size,
+      '--dur:'    + dur,
+      '--delay:'  + delay,
+      '--rise:'   + rise,
+      '--rise2:'  + rise2,
+      '--drift:'  + drift,
+      '--drift2:' + drift2,
+      'left:'     + left,
+      'top:'      + top,
+    ].join(';');
+
+    container.appendChild(el);
+  }
+})();
+</script>
+
+</body>
+</html>
